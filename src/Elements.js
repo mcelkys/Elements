@@ -57,7 +57,7 @@ Elements.PROCESSORS = new Map([
         }
         element.appendChild(fragment);
     }],
-    ['renderTo', function(element, parent) {
+    ['appendTo', function(element, parent) {
         parent.appendChild(element);
     }],
     ['class', function(element, classes) {
