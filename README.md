@@ -73,3 +73,24 @@ Resulting DOM:
 > - __set__: Assigns provided value (any type) to the `HTMLElement` object.
 > - __style__: Set CSS properties to [`CSSStyleDeclaration`](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration) of the `HTMLElement`.
 > - __text__: Creates [`Text`](https://developer.mozilla.org/en-US/docs/Web/API/Text) content and appends it to the `HTMLElement`.
+>
+> If you wish to extend the functionality of this utility you can set additional processor functions to this `Map` and invoke them by setting properties with corresponding names to the configuration object:
+> ```javascript
+> // Define a new processor function
+> Elements.PROCESSORS.set('isFocused', function(htmlElement, value) {
+>   // Implement your custom functionality
+>   if (value)
+>     htmlElement.focus();
+> });
+>
+> // Then elements you construct can be processed by your custom function
+> const element = Elements.build({
+>   isFocused: true
+> });
+> ```
+
+### Static methods of `Elements`
+
+#### `Elements.build()`
+> Takes a configuration [`Object`]() and builds a [`HTMLElement`]() using processor functions. Method takes a configuration parameter:
+> - Configuration `Object` _(required)_: If a property name is equal to the 
