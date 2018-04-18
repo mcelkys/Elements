@@ -106,7 +106,7 @@ Resulting DOM:
 > });
 > Elements.build({
 >   tag: 'nav',
->   'my-custom-attribute': 'lorem'
+>   'my-custom-attribute': 'foo'
 > });
 > ```
 > Resulting DOM:
@@ -115,7 +115,48 @@ Resulting DOM:
 >   <div class="css-class-selector"></div>
 > </div>
 > <input type="password"/>
-> <nav my-custom-attribute="lorem"></nav>
+> <nav my-custom-attribute="foo"></nav>
 > ```
 >  All properties are optional but the configuration `Object` itself is mandatory. Passing an emtpy configuration `Object` will create an empty DIV element without any attributes or listeners. Configuration `Object` can contain any properties, however the following properties will be handled by predefined processor functions:
 > - __appendTo__: Value must be of type [`Node`](https://developer.mozilla.org/en-US/docs/Web/API/Node). You can provide a `Node` object, to which your `HTMLElement` will be appended.
+> ```javascript
+> const div = Elements.build({});
+> Elements.build({
+>   tag: 'input',
+>   appendTo: div
+> });
+> ```
+> ```html
+> <div>
+>   <input/>
+> </div>
+> ```
+> - __attributes__: Value must be of type `Object`. Defining properties on the configuration `Object` itself, which do not have a corresponding processor function, will set attributes on your `HTMLElement`. However, should you wish to set an attribute, the name of which also happens to match a processor function, you set it using _attributes_. You can also use it if you wish expliciticly communicate your intent to set an attribute for any other reason.
+> ```javascript
+> Elements.build({
+>   id: 'my-id'
+> });
+> Elements.build({
+>   attributes: {
+>     id: 'my-id'
+>   }
+> });
+> Elements.build({
+>   children: [
+>     { tag: 'p', text: 'Lorem ipsum...' }
+>   ],
+>   attributes: {
+>     children: 'foo'
+>   }
+> });
+> ```
+> ```html
+> <div id="my-id"></div>
+> <div id="my-id"></div>
+> <div children="foo">
+>   <p>
+>     Lorem ipsum...
+>   </p>
+> </div>
+> ```
+> - __children__: Value must be of type `Object[]`. Each `Object` within the [`Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) will be as the configuration to build nested `HTMLElement`s.
