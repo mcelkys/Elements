@@ -92,5 +92,30 @@ Resulting DOM:
 ### Static methods of `Elements`
 
 #### `Elements.build()`
-> Takes a configuration [`Object`]() and builds a [`HTMLElement`]() using processor functions. Method takes a configuration parameter:
-> - Configuration `Object` _(required)_: If a property name is equal to the 
+> Takes a configuration [`Object`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) and builds a [`HTMLElement`]() using processor functions. Method takes a configuration parameter:
+> - Configuration `Object` _(required)_: If a property name is equal to processor function key, then said function will be invoked. If the configuration `Object` contains a property that does not match any processor functions, in that case the value will be set as an attribute on the `HTMLElement`:
+> ```javascript
+> Elements.build({
+>   children: [
+>     { class: 'css-class-selector' }
+>   ]
+> });
+> Elements.build({
+>   tag: 'input',
+>   type: 'password'
+> });
+> Elements.build({
+>   tag: 'nav',
+>   'my-custom-attribute': 'lorem'
+> });
+> ```
+> Resulting DOM:
+> ```html
+> <div>
+>   <div class="css-class-selector"></div>
+> </div>
+> <input type="password"/>
+> <nav my-custom-attribute="lorem"></nav>
+> ```
+>  All properties are optional but the configuration `Object` itself is mandatory. Passing an emtpy configuration `Object` will create an empty DIV element without any attributes or listeners. Configuration `Object` can contain any properties, however the following properties will be handled by predefined processor functions:
+> - __appendTo__: Value must be of type [`Node`](https://developer.mozilla.org/en-US/docs/Web/API/Node). You can provide a `Node` object, to which your `HTMLElement` will be appended.
