@@ -32,7 +32,7 @@ const element = Elements.build({
   id: 'paragraph-4',
   class: 'description',
   text: 'Lorem ipsum...',
-  renderTo: document.body
+  appendTo: document.body
  });
 ```
 Equivalent code using native browser APIs:
@@ -64,12 +64,12 @@ Resulting DOM:
 > - The property value (any type), which is assigned to the corresponding property of the configuration object. 
 >
 > Utility comes with necessary predefined processor functions:
+> - __appendTo__: Append the `HTMLElement` that is being contructed to any [`Node`](https://developer.mozilla.org/en-US/docs/Web/API/Node) provided.
 > - __attributes__: Sets `HTMLElement` attributes.
 > - __children__: Appends `HTMLElement` with child elements built from configuration objects passed into __Elements.buildFragment()__ method.
 > - __class__: Adds _class_ values to [`DOMTokenList`](https://developer.mozilla.org/en-US/docs/Web/API/DOMTokenList).
 > - __elements__: Creates a [`DocumentFragment`](https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment) and appends it to the `HTMLElement` being constructed.
 > - __listeners__: Add a listener [`function`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function) to the `HTMLElement`.
-> - __renderTo__: Append the `HTMLElement` that is being contructed to any [`Node`](https://developer.mozilla.org/en-US/docs/Web/API/Node) provided.
 > - __set__: Assigns provided value (any type) to the `HTMLElement` object.
 > - __style__: Set CSS properties to [`CSSStyleDeclaration`](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration) of the `HTMLElement`.
 > - __text__: Creates [`Text`](https://developer.mozilla.org/en-US/docs/Web/API/Text) content and appends it to the `HTMLElement`.
