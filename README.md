@@ -159,4 +159,51 @@ Resulting DOM:
 >   </p>
 > </div>
 > ```
-> - __children__: Value must be of type `Object[]`. Each `Object` within the [`Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) will be as the configuration to build nested `HTMLElement`s.
+> - __children__: Value must be of type `Object[]`. Each `Object` within the [`Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) will be used as the configuration to build nested `HTMLElement` objects. You can nest elements as deeply as you like.
+> ```javascript
+> Elements.build({
+>   tag: 'table',
+>   children: [
+>     {
+>       tag: 'tr',
+>       children: [
+>         { tag: 'th', text: 'foo' }
+>       ]
+>     },
+>     {
+>       tag: 'tr',
+>       children: [
+>         { tag: 'td', text: 'bar' }
+>       ]
+>     }
+>   ]
+> });
+> ```
+> ```html
+> <table>
+>   <tr>
+>     <th>foo</th>
+>   </tr>
+>   <tr>
+>     <td>bar</td>
+>   </tr>
+> </table>
+> ```
+> - __class__: Value must be of type [`String`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String). Adds CSS class selectors to the `HTMLElement`. You could also set _class_ in __attributes__, however that would not be quite the same. Setting _class_ as in __attributes__ will override existing CSS class selectors, whereas using __class__ will any provided values in additions to already existing selectors. The difference between then only matters in edge cases, and usually you will get the same results using either. You can add multiple CSS class selectors to __class__ by separating them by spaces.
+> ```javascript
+> Elements.build({ class: 'my-selector' });
+> Elements.build({ class: 'my-selector another-selector' });
+> Elements.build({
+>   attributes: { class: 'my-selector' }
+> });
+> Elements.build({
+>   attributes: { class: 'my-selector another-selector' }
+> });
+> ```
+> ```html
+> <div class="my-selector"></div>
+> <div class="my-selector another-selector"></div>
+> <div class="my-selector"></div>
+> <div class="my-selector another-selector"></div>
+> ```
+> - __elements__: Value must be of type `Node[]`. This is another way add nested elements, however in this case the `Array` must contain pre-build document `Node` objects, rather than configuration objects. You can use this with objects that you retrieved by using methods like _document.getElementById()_. You might also want to use __elements__ instead of __children__ when you need to have a reference to child `Node` for later processing.
