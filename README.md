@@ -70,6 +70,7 @@ Resulting DOM:
 > - __class__: Adds _class_ values to [`DOMTokenList`](https://developer.mozilla.org/en-US/docs/Web/API/DOMTokenList).
 > - __elements__: Creates a [`DocumentFragment`](https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment) and appends it to the `HTMLElement` being constructed.
 > - __listeners__: Add a listener [`function`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function) to the `HTMLElement`.
+> - __prependTo__: Add the `HTMLElement` as the first child of the provided `Node`.
 > - __set__: Assigns provided value (any type) to the `HTMLElement` object.
 > - __style__: Set CSS properties to [`CSSStyleDeclaration`](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration) of the `HTMLElement`.
 > - __text__: Creates [`Text`](https://developer.mozilla.org/en-US/docs/Web/API/Text) content and appends it to the `HTMLElement`.
@@ -247,6 +248,24 @@ Resulting DOM:
 >     }
 >   }
 > });
+> ```
+> - __prependTo__: Value must be of type `Node`. This `HTMLElement` will be added as the first child of the the provided `Node`.
+> ```javascript
+> const div = Elements.build({
+>   children: [
+>     { tag: 'a' }
+>   ]
+> });
+> Elements.build({
+>   tag: 'form',
+>   prependTo: div
+> });
+> ```
+> ```html
+> <div>
+>   <form></form>
+>   <a></a>
+> </div>
 > ```
 > - __set__: Value can be of type `Object`. Any properties in this `Object` will be assigned to your `HTMLElement` object. With standard HTML elements this will work similarly to setting an attribute. However, instead of using the native _Element.setAttribute()_ method, this uses the JavaScript [assignment operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Assignment_Operators#Assignment) on the `HTMLElement` object. This will invoke JavaScript setter functions should any be defined. This is mainly useful when defining custom [web components](https://developer.mozilla.org/en-US/docs/Web/Web_Components).
 > ```javascript
