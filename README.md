@@ -235,3 +235,38 @@ Resulting DOM:
 >   <input class="focused"/>
 > </div>
 > ```
+> - __listeners__: Value must be of type `Object`. The `Object` effectively maps each [`Event`](https://developer.mozilla.org/en-US/docs/Web/API/Event) type to its handler [`Function`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function). A handler `Function` should app an `Event` parameter.
+> ```javascript
+> Elements.build({
+>   listeners: {
+>     click: event => {
+>       // Handler your click event here
+>     },
+>     mouseover: event => {
+>       // Handler your mouseover event here
+>     }
+>   }
+> });
+> ```
+> - __set__: Value can be of type `Object`. Any properties in this `Object` will be assigned to your `HTMLElement` object. With standard HTML elements this will work similarly to setting an attribute. However, instead of using the native _Element.setAttribute()_ method, this uses the JavaScript [assignment operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Assignment_Operators#Assignment) on the `HTMLElement` object. This will invoke JavaScript setter functions should any be defined. This is mainly useful when defining custom [web components](https://developer.mozilla.org/en-US/docs/Web/Web_Components).
+> ```javascript
+> class MyComponent extends HTMLElement {
+>   
+>   set color(value) {
+>     // Define your custom setter logic. This functions can be invoked using "set" configuration.
+>     console.log(value);
+>   }
+>   
+> }
+>
+> customElements.define('my-component');
+>
+> Elements.build({
+>   tag: 'my-component',
+>   set: {
+>     color: [255,255,255,1]
+>   }
+> });
+>
+> // outputs to console => [255,255,255,1]
+> ```
