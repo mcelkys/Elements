@@ -259,7 +259,7 @@ Resulting DOM:
 >   
 > }
 >
-> customElements.define('my-component');
+> customElements.define('my-component', MyComponent);
 >
 > Elements.build({
 >   tag: 'my-component',
@@ -269,4 +269,16 @@ Resulting DOM:
 > });
 >
 > // outputs to console => [255,255,255,1]
+> ```
+> - __style__: Value must be of type `Object`. This is equivalent to inline CSS in HTML. `Object` maps CSS properties to value. Property names should appear as they in regular CSS files, not camelCased.
+> ```javascript
+> Elements.build({
+>   style: {
+>     width: '100px',
+>     'background-color': 'rgba(0,0,0,0.3)'
+>   }
+> });
+> ```
+> ```html
+> <div style="width: 100px; background-color: rgba(0,0,0,0.3)"></div>
 > ```
