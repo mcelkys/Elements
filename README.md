@@ -92,7 +92,7 @@ Resulting DOM:
 ### Static methods of `Elements`
 
 #### `Elements.build()`
-> Takes a configuration [`Object`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) and builds a [`HTMLElement`]() using processor functions. Method takes a configuration parameter:
+> Takes a configuration [`Object`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) and builds a [`HTMLElement`]() using processor functions. Returned value is the new `HTMLElement` object. Method takes a configuration parameter:
 > - Configuration `Object` _(required)_: If a property name is equal to processor function key, then said function will be invoked. If the configuration `Object` contains a property that does not match any processor functions, in that case the value will be set as an attribute on the `HTMLElement`:
 > ```javascript
 > Elements.build({
@@ -282,7 +282,7 @@ Resulting DOM:
 > ```html
 > <div style="width: 100px; background-color: rgba(0,0,0,0.3)"></div>
 > ```
-> - __tag__: Value a [`String`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) or a [falsy](https://developer.mozilla.org/en-US/docs/Glossary/Falsy) value. This controls what type of `HTMLElement` will be produced. Omitting this configuration will produce a DIV element. The value can also reference a custom web component.
+> - __tag__: Value can be a [`String`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) or a [falsy](https://developer.mozilla.org/en-US/docs/Glossary/Falsy) value. This controls what type of `HTMLElement` will be produced. Omitting this configuration will produce a DIV element. The value can also reference a custom web component.
 > ```javascript
 > Elements.build({ tag: 'ul' });
 > Elements.build({});
@@ -300,3 +300,6 @@ Resulting DOM:
 > ```html
 > <button>Click me!</button>
 > ```
+
+#### `Elements.buildFragment()`
+> This method produces and returns an [`DocumentFragment`](https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment) object, which can contain mutliple [`HTMLElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement) objects.
