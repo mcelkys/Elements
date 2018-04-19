@@ -270,7 +270,7 @@ Resulting DOM:
 >
 > // outputs to console => [255,255,255,1]
 > ```
-> - __style__: Value must be of type `Object`. This is equivalent to inline CSS in HTML. `Object` maps CSS properties to value. Property names should appear as they in regular CSS files, not camelCased.
+> - __style__: Value must be of type `Object`. This is equivalent to inline CSS in HTML. `Object` maps CSS properties to values. Property names should appear as they in regular CSS files, not camelCased.
 > ```javascript
 > Elements.build({
 >   style: {
@@ -281,4 +281,22 @@ Resulting DOM:
 > ```
 > ```html
 > <div style="width: 100px; background-color: rgba(0,0,0,0.3)"></div>
+> ```
+> - __tag__: Value a [`String`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) or a [falsy](https://developer.mozilla.org/en-US/docs/Glossary/Falsy) value. This controls what type of `HTMLElement` will be produced. Omitting this configuration will produce a DIV element. The value can also reference a custom web component.
+> ```javascript
+> Elements.build({ tag: 'ul' });
+> Elements.build({});
+> Elements.build({ tag: 'my-component' });
+> ```
+> ```html
+> <ul></ul>
+> <div></div>
+> <my-component></my-component>
+> ```
+> - __text__: Value must be of type `String`. Creates [`Text`](https://developer.mozilla.org/en-US/docs/Web/API/Text) content and adds it to the `HTMLElement`.
+> ```javascript
+> Elements.build({ tag: 'button', text: 'Click me!' });
+> ```
+> ```html
+> <button>Click me!</button>
 > ```
