@@ -206,4 +206,32 @@ Resulting DOM:
 > <div class="my-selector"></div>
 > <div class="my-selector another-selector"></div>
 > ```
-> - __elements__: Value must be of type `Node[]`. This is another way add nested elements, however in this case the `Array` must contain pre-build document `Node` objects, rather than configuration objects. You can use this with objects that you retrieved by using methods like _document.getElementById()_. You might also want to use __elements__ instead of __children__ when you need to have a reference to child `Node` for later processing.
+> - __elements__: Value must be of type `Node[]`. This is another way add nested elements, however in this case the `Array` must contain pre-build document `Node` objects, rather than configuration objects. You can use this with objects that you retrieved by using methods like _document.getElementById()_. You might also want to use __elements__ instead of __children__ when you need to have a reference to child `Node` for later processing. You can to use both __elements__ and __children__ on the same element, however there are no guarantees about which will be appended first. That being said, most JavaScript engines will evaluate these in order that they are defined.
+> ```javascript
+> const div = document.getElementById('my-id'); // Can use with elements retrieved from the DOM
+> const input = Elements.build({ tag: 'input' }); // Can use with pre-build elements
+> Elements.build({ elements: [div, input] });
+>
+> // Keeping a reference to an element allows you to manipulate the element after construction.
+> input.classList.add('focused');
+>
+> // Can use both elements and children but this is dangerous
+> Elements.build({
+>   children: [
+>     { tag: 'a', href: '/action/path' }
+>   ],
+>   elements: [div, input]
+> });
+> ```
+> ```html
+> <div>
+>   <div id="my-id"></div>
+>   <input class="focused"/>
+> </div>
+>
+> <div>
+>   <a href="/action/path"></a>
+>   <div id="my-id"></div>
+>   <input class="focused"/>
+> </div>
+> ```
