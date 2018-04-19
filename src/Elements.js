@@ -67,5 +67,10 @@ Elements.PROCESSORS = new Map([
         for (let property in properties) {
             element[property] = properties[property];
         }
+    }],
+    ['prependTo', function(element, parent) {
+        const { firstChild } = parent;
+        if (firstChild) parent.insertBefore(element, firstChild);
+        else parent.appendChild(element);
     }]
 ]);
