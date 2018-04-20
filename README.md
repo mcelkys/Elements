@@ -326,7 +326,7 @@ Resulting DOM:
 > This method produces and returns a [`DocumentFragment`](https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment) object, which can contain mutliple [`HTMLElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement) objects. The `DocumentFragment` can be appended to any other [`Node`](https://developer.mozilla.org/en-US/docs/Web/API/Node) object. It takes a single parameter:
 > - `Object[]` _(required)_: Every [`Object`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) in this [`Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) must be a configuration object that will be used to construct `HTMLElement` object in the `DocumentFragment`.
 >
-> Returns `DocumentFragment`.
+> Method returns `DocumentFragment`.
 > ```javascript
 > const fragment = Elements.buildFragment([
 >   { tag: 'h1' },
@@ -348,7 +348,7 @@ Resulting DOM:
 > This method removes all nested [`Node`](https://developer.mozilla.org/en-US/docs/Web/API/Node) objects from the provided `Node`. Use this method when you wish empty out an element. Method accepts a single parameter:
 > - `Node` _(required)_: The document `Node` that will be emptied.
 >
-> Method does not return anything, in other words returns [`undefined`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined).
+> Method returns [`undefined`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined).
 > ```html
 > <div id="my-id">
 >   <table></table>
