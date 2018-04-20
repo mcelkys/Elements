@@ -321,4 +321,21 @@ Resulting DOM:
 > ```
 
 #### `Elements.buildFragment()`
-> This method produces and returns an [`DocumentFragment`](https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment) object, which can contain mutliple [`HTMLElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement) objects.
+> This method produces and returns a [`DocumentFragment`](https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment) object, which can contain mutliple [`HTMLElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement) objects. The `DocumentFragment` can be appended to any other [`Node`](https://developer.mozilla.org/en-US/docs/Web/API/Node) object. It takes a single parameter:
+> - `Object[]` _(required)_: Every [`Object`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) in this [`Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) must be a configuration object that will be used to construct `HTMLElement` object in the `DocumentFragment`.
+> ```javascript
+> const fragment = Elements.buildFragment([
+>   { tag: 'h1' },
+>   { tag: 'form' },
+>   { tag: 'button' }
+> ]);
+>
+> document.body.appendChild(fragment);
+> ```
+> ```html
+> <body>
+>   <h1></h1>
+>   <form></form>
+>   <button></button>
+> </body>
+> ```
