@@ -118,6 +118,7 @@ Resulting DOM:
 > <input type="password"/>
 > <nav my-custom-attribute="foo"></nav>
 > ```
+> Method returns `HTMLElement`.
 >  All properties are optional but the configuration `Object` itself is mandatory. Passing an emtpy configuration `Object` will create an empty DIV element without any attributes or listeners. Configuration `Object` can contain any properties, however the following properties will be handled by predefined processor functions:
 > - __appendTo__: Value must be of type [`Node`](https://developer.mozilla.org/en-US/docs/Web/API/Node). You can provide a `Node` object, to which your `HTMLElement` will be appended.
 > ```javascript
@@ -323,6 +324,7 @@ Resulting DOM:
 #### `Elements.buildFragment()`
 > This method produces and returns a [`DocumentFragment`](https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment) object, which can contain mutliple [`HTMLElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement) objects. The `DocumentFragment` can be appended to any other [`Node`](https://developer.mozilla.org/en-US/docs/Web/API/Node) object. It takes a single parameter:
 > - `Object[]` _(required)_: Every [`Object`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) in this [`Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) must be a configuration object that will be used to construct `HTMLElement` object in the `DocumentFragment`.
+> Returns `DocumentFragment`.
 > ```javascript
 > const fragment = Elements.buildFragment([
 >   { tag: 'h1' },
@@ -339,3 +341,24 @@ Resulting DOM:
 >   <button></button>
 > </body>
 > ```
+
+#### `Element.removeAllChildren()`
+> This method removes all nested [`Node`](https://developer.mozilla.org/en-US/docs/Web/API/Node) objects from the provided `Node`. Use this method when you wish empty out an element. Method accepts a single parameter:
+> - `Node` _(required)_: The document `Node` that will be emptied.
+> Method does not return anything, in other words returns [`undefined`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined).
+> ```html
+> <div id="my-id">
+>   <table></table>
+>   <ul>
+>     <li></li>
+>   </ul>
+> </div>
+> ```
+> ```javascript
+> const div = document.getElementById('my-id');
+> Elements.removeAllChildren(div);
+> ```
+> ```html
+> <div id="my-id"></div>
+> ```
+
