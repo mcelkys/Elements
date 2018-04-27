@@ -2,18 +2,6 @@
 
 Utilities to ease DOM manipulations without using a framework with particular focus on rendering elements.
 
-
-## Prerequisites
-
-Utility is built to run on modern browsers that support:
-
-  - Variable declarations using __`const`__ and __`let`__ keywords
-  - ES6 Classes
-  - Maps
-  - Spread operator
-  - Iterable objects and __`for...of`__ loops
-  
-
 ## Usage
 
 ### Get started
@@ -55,46 +43,11 @@ Resulting DOM:
 
 ## Reference
 
-### Static properties of `Elements`
-
-#### `Elements.PROCESSORS`
-> A [`Map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) that contains processors functions responsible for constructing [`HTMLElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement) objects. Any function found in this `Map` can be invoked in __Elements.build()__ method. Adding a property to the element configuration object, passed as a parameter into __Elements.build()__, with name equal to `Map` key will cause the processor function to be invoked.
-> Processor functions are anonymous functions that return [`undefined`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) and accept 2 parameters:
-> - `HTMLElement` object that is being constructed
-> - The property value (any type), which is assigned to the corresponding property of the configuration object. 
->
-> Utility comes with necessary predefined processor functions:
-> - __appendTo__: Append the `HTMLElement` that is being contructed to any [`Node`](https://developer.mozilla.org/en-US/docs/Web/API/Node) provided.
-> - __attributes__: Sets `HTMLElement` attributes.
-> - __children__: Appends `HTMLElement` with child elements built from configuration objects passed into __Elements.buildFragment()__ method.
-> - __class__: Adds _class_ values to [`DOMTokenList`](https://developer.mozilla.org/en-US/docs/Web/API/DOMTokenList).
-> - __elements__: Creates a [`DocumentFragment`](https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment) and appends it to the `HTMLElement` being constructed.
-> - __listeners__: Add a listener [`function`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function) to the `HTMLElement`.
-> - __prependTo__: Add the `HTMLElement` as the first child of the provided `Node`.
-> - __set__: Assigns provided value (any type) to the `HTMLElement` object.
-> - __style__: Set CSS properties to [`CSSStyleDeclaration`](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration) of the `HTMLElement`.
-> - __text__: Creates [`Text`](https://developer.mozilla.org/en-US/docs/Web/API/Text) content and appends it to the `HTMLElement`.
->
-> If you wish to extend the functionality of this utility you can set additional processor functions to this `Map` and invoke them by setting properties with corresponding names to the configuration object:
-> ```javascript
-> // Define a new processor function
-> Elements.PROCESSORS.set('isFocused', function(htmlElement, value) {
->   // Implement your custom functionality
->   if (value)
->     htmlElement.focus();
-> });
->
-> // Then elements you construct can be processed by your custom function
-> const element = Elements.build({
->   isFocused: true
-> });
-> ```
-
 ### Static methods of `Elements`
 
 #### `Elements.build()`
 > Takes a configuration [`Object`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) and builds a [`HTMLElement`]() using processor functions. Returned value is the new `HTMLElement` object. Method takes a configuration parameter:
-> - Configuration `Object` _(required)_: If a property name is equal to processor function key, then said function will be invoked. If the configuration `Object` contains a property that does not match any processor functions, in that case the value will be set as an attribute on the `HTMLElement`:
+> - Configuration `Object` _(required)_: If a property name is equal to processor function key, then said function will be invoked. In case that the element has a property setter function with a matching name, said setter function will be invoked. If the configuration `Object` contains a property that does not match any processor functions and the element does not have a matching property setter function, in that case the value will be set as an attribute on the `HTMLElement`:
 > ```javascript
 > Elements.build({
 >   children: [
@@ -120,6 +73,42 @@ Resulting DOM:
 > ```
 > Method returns `HTMLElement`.
 >
+> If you are using this with custom [web components](https://developer.mozilla.org/en-US/docs/Web/Web_Components), you may define a setter function for a property in the constructor method. This setter function can be directly invoked.
+>```javascript
+> class MyCustomButton extends HTMLElement {
+> 
+>   constructor() {
+>     super();
+>     // Must use Object.defineProperty() to leverage this functionality. ES6 setter methods will not work for this purpose.
+>     Object.defineProperty(this, 'label', {
+>       // Define your custom setter function
+>       set: labelConfigurationObject => {
+>         // Implement your custom behaviour
+>         this.appendChild(Elements.build(labelConfigurationObject));
+>       }
+>     });
+>   }
+>
+> }
+>
+> customElements.define('my-button', MyCustomButton);
+>
+>
+> Elements.build({
+>   class: 'my-css-class-selector', // Property implemented with a processor function (evaluation priority 1)
+>   id: 'my-id', // Basic attribute that has no processor function and no setter function (evaluation priority 3)
+>   tag: 'my-button', // Special property that defines element tag name (entirely separate from other properties, needs no priority)
+>   label: {    // Property implemented with a custom setter function (evaluation priority 2)
+>     tag: 'label',
+>     text: 'Click me!'
+>   }
+> });
+>```
+>```html
+> <my-button class="my-css-class-selector" id="my-id">
+>   <label>Click me!</label>
+> </my-button>
+>```
 >  All properties are optional but the configuration `Object` itself is mandatory. Passing an emtpy configuration `Object` will create an empty DIV element without any attributes or listeners. Configuration `Object` can contain any properties, however the following properties will be handled by predefined processor functions:
 > - __appendTo__: Value must be of type [`Node`](https://developer.mozilla.org/en-US/docs/Web/API/Node). You can provide a `Node` object, to which your `HTMLElement` will be appended.
 > ```javascript
@@ -192,6 +181,7 @@ Resulting DOM:
 >   </tr>
 > </table>
 > ```
+> - __child__: Value must of of type `Object`. The `Object` should be a configuration object for a child element. This is equivalent to __children__, however it accepts a single configuration `Object` instead of an `Array`. This is a performance optimisation over __children__ when you only require a single child element.
 > - __class__: Value must be of type [`String`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String). Adds CSS class selectors to the `HTMLElement`. You could also set _class_ in __attributes__, however that would not be quite the same. Setting _class_ as in __attributes__ will override existing CSS class selectors, whereas using __class__ will any provided values in additions to already existing selectors. The difference between then only matters in edge cases, and usually you will get the same results using either. You can add multiple CSS class selectors to __class__ by separating them by spaces.
 > ```javascript
 > Elements.build({ class: 'my-selector' });
@@ -238,6 +228,7 @@ Resulting DOM:
 >   <input class="focused"/>
 > </div>
 > ```
+> - __element__: Value must be of type `Node`. This functions exactly the same as __elements__, except that it does not that an `Array` of `Node` objects, but a single `Node`. This is a perfomance optimisation over __elements__.
 > - __listeners__: Value must be of type `Object`. The `Object` effectively maps each [`Event`](https://developer.mozilla.org/en-US/docs/Web/API/Event) type to its handler [`Function`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function). A handler `Function` should app an `Event` parameter.
 > ```javascript
 > Elements.build({
@@ -364,4 +355,25 @@ Resulting DOM:
 > ```html
 > <div id="my-id"></div>
 > ```
+
+#### `Elements.defineProcessor()`
+> This method allows registering new processor functions, which enables you to extend the functionality of this library with your own custom features. This methods accepts two parameters:
+> - Processor key/name _(required)_: Must be of type [`String`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String). Defines an entry point to your custom processor.
+> - Processor function _(required)_: Must be of type [`Function`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function). The function that implements your custom feature. This function should return nothing/`undefined` and accept two parameters:
+> 1. [`HTMLElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement): This is the element that is under construction at the time when your processor function is invoked.
+> 2. Value (of any type) that will come with the element configuration object.
+>
+> Method returns [`undefined`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined).
+>```javascript
+> // Define your custom processor
+> Elements.defineProcessor('focused', function(htmlElement, value) {
+>   // Implement your custom feature
+>   if (value) htmlElement.focus();
+> });
+>
+> Elements.build({
+>   tag: 'input',
+>   focused: true // add a property to element configuration object to invoke your custom processor function
+> });
+>```
 
