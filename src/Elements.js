@@ -1,76 +1,120 @@
-class Elements {
+(function(globalScope, domApiInterface, libraryName) {
 
-    static build(config) {
-        const element = document.createElement(config.tag || 'div');
-        for (let prop in config) {
-            if (this.PROCESSORS.has(prop))
-                this.PROCESSORS.get(prop)(element, config[prop]);
-            else if (prop !== 'tag')
-                element.setAttribute(prop, config[prop]);
+    var processorFunctions = {
+
+        attributes: function(element, attributes) {
+            for (var i = 0; i < attributes.length; i++) {
+                var attribute = attributes[i];
+                element.setAttribute(attribute, attributes[attribute]);
+            }
+        },
+
+        listeners: function(element, listeners) {
+            for (var event in listeners) {
+                element.addEventListener(event, listeners[event]);
+            }
+        },
+
+        children: function(element, children) {
+            element.appendChild(buildFragment(children));
+        },
+
+        child: function(element, child) {
+            element.appendChild(build(child));
+        },
+
+        text: function(element, text) {
+            element.appendChild(domApiInterface.createTextNode(text));
+        },
+
+        style: function(element, styles) {
+            for (var style in styles) {
+                element.style.setProperty(style, styles[style]);
+            }
+        },
+
+        elements: function(element, children) {
+            var fragment = domApiInterface.createDocumentFragment();
+            for (var i = 0; i < children.length; i++) {
+                fragment.appendChild(children[i]);
+            }
+            element.appendChild(fragment);
+        },
+
+        element: function(element, child) {
+            element.appendChild(child);
+        },
+
+        appendTo: function(element, parent) {
+            parent.appendChild(element);
+        },
+
+        class: function(element, classes) {
+            var split = classes.split(' ');
+            var classList = element.classList;
+            classList.add.apply(classList, split);
+        },
+
+        set: function(element, properties) {
+            for (var property in properties) {
+                element[property] = properties[property];
+            }
+        },
+
+        prependTo: function(element, parent) {
+            var firstChild = parent.firstChild;
+            if (firstChild) parent.insertBefore(element, firstChild);
+            else parent.appendChild(element);
+        }
+
+    };
+
+    function build(config) {
+        var element = domApiInterface.createElement(config.tag || 'div');
+        for (var prop in config) {
+            if (prop in processorFunctions)
+                processorFunctions[prop](element, config[prop]);
+            else {
+                var descriptor = Object.getOwnPropertyDescriptor(element, prop);
+                if (descriptor && 'set' in descriptor)
+                    descriptor.set(config[prop]);
+                else if (prop !== 'tag')
+                    element.setAttribute(prop, config[prop]);
+            }
         }
         return element;
     }
 
-    static buildFragment(configs) {
-        const fragment = document.createDocumentFragment();
-        for (let conf of configs) {
-            fragment.appendChild(this.build(conf));
+    function buildFragment(configs) {
+        var fragment = domApiInterface.createDocumentFragment();
+        for (var i = 0; i < configs.length; i++) {
+            fragment.appendChild(build(configs[i]));
         }
         return fragment;
     }
 
-    static removeAllChildren(element) {
-        const children = element.childNodes;
-        for (let i = children.length - 1; i >= 0; i--) {
+    function removeAllChildren(element) {
+        var children = element.childNodes;
+        for (var i = children.length - 1; i >= 0; i--) {
             element.removeChild(children[i]);
         }
     }
 
-}
+    function defineProcessor(key, fn) {
+        processorFunctions[key] = fn;
+    }
 
-Elements.PROCESSORS = new Map([
-    ['attributes', function(element, attributes) {
-        for (let attribute in attributes) {
-            element.setAttribute(attribute, attributes[attribute]);
-        }
-    }],
-    ['listeners', function(element, listeners) {
-        for (let event in listeners) {
-            element.addEventListener(event, listeners[event]);
-        }
-    }],
-    ['children', function(element, children) {
-        element.appendChild(Elements.buildFragment(children));
-    }],
-    ['text', function(element, text) {
-        element.appendChild(document.createTextNode(text));
-    }],
-    ['style', function(element, styles) {
-        for (let style in styles) {
-            element.style.setProperty(style, styles[style]);
-        }
-    }],
-    ['elements', function(element, children) {
-        const fragment = document.createDocumentFragment();
-        for (let child of children) {
-            fragment.appendChild(child);
-        }
-        element.appendChild(fragment);
-    }],
-    ['appendTo', function(element, parent) {
-        parent.appendChild(element);
-    }],
-    ['class', function(element, classes) {
-        element.classList.add(...(classes.split(' ')));
-    }],
-    ['set', function(element, properties) {
-        for (let property in properties) {
-            element[property] = properties[property];
-        }
-    }],
-    ['prependTo', function(element, parent) {
-        const { firstChild } = parent;
-        if (firstChild) parent.insertBefore(element, firstChild);
-        else parent.appendChild(element);
-    }]
-]);
+    var lib = {};
+    lib.build = build.bind(lib);
+    lib.buildFragment = buildFragment.bind(lib);
+    lib.removeAllChildren = removeAllChildren.bind(lib);
+    lib.defineProcessor = defineProcessor.bind(lib);
+
+    Object.defineProperty(globalScope, libraryName, {
+        writable: false,
+        configurable: false,
+        enumerable: false,
+        value: Object.freeze(lib)
+    });
+
+})(window, document, 'Elements');
