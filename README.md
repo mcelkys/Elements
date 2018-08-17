@@ -199,11 +199,11 @@ Resulting DOM:
 > <div class="my-selector"></div>
 > <div class="my-selector another-selector"></div>
 > ```
-> - __elements__: Value must be of type `Node[]`. This is another way add nested elements, however in this case the `Array` must contain pre-build document `Node` objects, rather than configuration objects. You can use this with objects that you retrieved by using methods like _document.getElementById()_. You might also want to use __elements__ instead of __children__ when you need to have a reference to child `Node` for later processing. You can to use both __elements__ and __children__ on the same element, however there are no guarantees about which will be appended first. That being said, most JavaScript engines will evaluate these in order that they are defined.
+> - __nodes__: Value must be of type `Node[]`. This is another way add nested elements, however in this case the `Array` must contain pre-build document `Node` objects, rather than configuration objects. You can use this with objects that you retrieved by using methods like _document.getElementById()_. You might also want to use __nodes__ instead of __children__ when you need to have a reference to child `Node` for later processing. You can to use both __nodes__ and __children__ on the same element, however there are no guarantees about which will be appended first. That being said, most JavaScript engines will evaluate these in order that they are defined.
 > ```javascript
 > const div = document.getElementById('my-id'); // Can use with elements retrieved from the DOM
 > const input = Elements.build({ tag: 'input' }); // Can use with pre-build elements
-> Elements.build({ elements: [div, input] });
+> Elements.build({ nodes: [div, input] });
 >
 > // Keeping a reference to an element allows you to manipulate the element after construction.
 > input.classList.add('focused');
@@ -213,7 +213,7 @@ Resulting DOM:
 >   children: [
 >     { tag: 'a', href: '/action/path' }
 >   ],
->   elements: [div, input]
+>   nodes: [div, input]
 > });
 > ```
 > ```html
@@ -228,7 +228,7 @@ Resulting DOM:
 >   <input class="focused"/>
 > </div>
 > ```
-> - __element__: Value must be of type `Node`. This functions exactly the same as __elements__, except that it does not that an `Array` of `Node` objects, but a single `Node`. This is a perfomance optimisation over __elements__.
+> - __node__: Value must be of type `Node`. This functions exactly the same as __nodes__, except that it does not that an `Array` of `Node` objects, but a single `Node`. This is a perfomance optimisation over __nodes__.
 > - __listeners__: Value must be of type `Object`. The `Object` effectively maps each [`Event`](https://developer.mozilla.org/en-US/docs/Web/API/Event) type to its handler [`Function`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function). A handler `Function` should app an `Event` parameter.
 > ```javascript
 > Elements.build({
