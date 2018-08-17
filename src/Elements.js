@@ -32,7 +32,7 @@
             }
         },
 
-        elements: function(element, children) {
+        nodes: function(element, children) {
             var fragment = domApiInterface.createDocumentFragment();
             for (var i = 0; i < children.length; i++) {
                 fragment.appendChild(children[i]);
@@ -40,7 +40,7 @@
             element.appendChild(fragment);
         },
 
-        element: function(element, child) {
+        node: function(element, child) {
             element.appendChild(child);
         },
 
@@ -64,6 +64,14 @@
             var firstChild = parent.firstChild;
             if (firstChild) parent.insertBefore(element, firstChild);
             else parent.appendChild(element);
+        },
+
+        replaceNode: function(element, oldElement) {
+            oldElement.parentNode.replaceChild(element, oldElement);
+        },
+
+        beforeNode: function(element, sibling) {
+            sibling.parentNode.insertBefore(element, sibling);
         }
 
     };
