@@ -3,8 +3,7 @@
     var processorFunctions = {
 
         attributes: function(element, attributes) {
-            for (var i = 0; i < attributes.length; i++) {
-                var attribute = attributes[i];
+            for (var attribute in attributes) {
                 element.setAttribute(attribute, attributes[attribute]);
             }
         },
