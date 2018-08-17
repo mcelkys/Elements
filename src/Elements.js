@@ -72,6 +72,12 @@
 
         beforeNode: function(element, sibling) {
             sibling.parentNode.insertBefore(element, sibling);
+        },
+
+        afterNode: function(element, sibling) {
+            var nextSibling = sibling.nextSibling;
+            if (nextSibling) nextSibling.parentNode.insertBefore(element, nextSibling);
+            else sibling.parentNode.appendChild(element);
         }
 
     };
