@@ -288,11 +288,11 @@ Resulting DOM:
 >   <main></main>
 > </body>
 > ```
-> ```html
 > ```javascript
 > const sidebar = document.getElementById('sidebar');
 > Elements.build({ tag: 'table', replaceNode: sidebar });
 > ```
+> ```html
 > <body>
 >   <nav></nav>
 >   <table></table>
