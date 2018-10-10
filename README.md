@@ -73,20 +73,12 @@ Resulting DOM:
 > ```
 > Method returns `HTMLElement`.
 >
-> If you are using this with custom [web components](https://developer.mozilla.org/en-US/docs/Web/Web_Components), you may define a setter function for a property in the constructor method. This setter function can be directly invoked.
+> If you are using this with custom [web components](https://developer.mozilla.org/en-US/docs/Web/Web_Components), you may define a setter method. This setter function can be directly invoked.
 >```javascript
 > class MyCustomButton extends HTMLElement {
 > 
->   constructor() {
->     super();
->     // Must use Object.defineProperty() to leverage this functionality. ES6 setter methods will not work for this purpose.
->     Object.defineProperty(this, 'label', {
->       // Define your custom setter function
->       set: labelConfigurationObject => {
->         // Implement your custom behaviour
->         this.appendChild(Elements.build(labelConfigurationObject));
->       }
->     });
+>   set label(labelConfigurationObject) {
+>     this.appendChild(Elements.build(labelConfigurationObject));
 >   }
 >
 > }
