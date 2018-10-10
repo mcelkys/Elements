@@ -102,6 +102,18 @@ Resulting DOM:
 > </my-button>
 >```
 >  All properties are optional but the configuration `Object` itself is mandatory. Passing an emtpy configuration `Object` will create an empty DIV element without any attributes or listeners. Configuration `Object` can contain any properties, however the following properties will be handled by predefined processor functions:
+> - __afterNode__: Value must be of type [`Node`](https://developer.mozilla.org/en-US/docs/Web/API/Node). The constructed `HTMLElement` will be appended to the parent `Node` of your provided `Node`. It will appear immediatelly after your provided `Node`.
+> ```javascript
+>   const button = Elements.build({ tag: 'button' });
+>   const div = Elements.build({ node: button });
+>   Elements.build({ tag: 'a', afterNode: button });
+> ```
+> ```html
+> <div>
+>   <button></button>
+>   <a></a>
+> </div>
+> ```
 > - __appendTo__: Value must be of type [`Node`](https://developer.mozilla.org/en-US/docs/Web/API/Node). You can provide a `Node` object, to which your `HTMLElement` will be appended.
 > ```javascript
 > const div = Elements.build({});
