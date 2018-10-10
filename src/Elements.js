@@ -1,5 +1,26 @@
 (function(globalScope, domApiInterface, libraryName) {
 
+    var ZERO = 0;
+    var ONE = 1;
+    var SPACE = ' ';
+    var DIV = 'div';
+    var TAG = 'tag';
+    var FUNCTION = 'function';
+    var STRING = 'string';
+    var EVENT_LISTENER_OPTIONS = (function() {
+        var passiveSupported = false;
+        try {
+            domApiInterface.createElement(DIV).addEventListener('click', function() {}, Object.defineProperty({}, 'passive', {
+                get: function() {
+                    passiveSupported = true;
+                }
+            }));
+        } catch(e) {
+            passiveSupported = false;
+        }
+        return passiveSupported ? { passive: true } : false;
+    })();
+
     var processorFunctions = {
 
         attributes: function(element, attributes) {
@@ -10,7 +31,7 @@
 
         listeners: function(element, listeners) {
             for (var event in listeners) {
-                element.addEventListener(event, listeners[event]);
+                element.addEventListener(event, listeners[event], EVENT_LISTENER_OPTIONS);
             }
         },
 
@@ -34,7 +55,7 @@
 
         nodes: function(element, children) {
             var fragment = domApiInterface.createDocumentFragment();
-            for (var i = 0; i < children.length; i++) {
+            for (var i = ZERO; i < children.length; i++) {
                 fragment.appendChild(children[i]);
             }
             element.appendChild(fragment);
@@ -49,7 +70,7 @@
         },
 
         class: function(element, classes) {
-            var split = classes.split(' ');
+            var split = (typeof classes === STRING ? classes : String(classes)).split(SPACE);
             var classList = element.classList;
             classList.add.apply(classList, split);
         },
@@ -83,15 +104,15 @@
     };
 
     function build(config) {
-        var element = domApiInterface.createElement(config.tag || 'div');
+        var element = domApiInterface.createElement(TAG in config ? config.tag : DIV);
         for (var prop in config) {
             if (prop in processorFunctions)
                 processorFunctions[prop](element, config[prop]);
             else {
-                var descriptor = Object.getOwnPropertyDescriptor(element, prop);
-                if (descriptor && 'set' in descriptor)
-                    descriptor.set(config[prop]);
-                else if (prop !== 'tag')
+                var descriptor = Object.getOwnPropertyDescriptor(element.constructor.prototype, prop);
+                if (descriptor && typeof descriptor.set === FUNCTION)
+                    descriptor.set.call(element, config[prop]);
+                else if (prop !== TAG)
                     element.setAttribute(prop, config[prop]);
             }
         }
@@ -100,7 +121,7 @@
 
     function buildFragment(configs) {
         var fragment = domApiInterface.createDocumentFragment();
-        for (var i = 0; i < configs.length; i++) {
+        for (var i = ZERO; i < configs.length; i++) {
             fragment.appendChild(build(configs[i]));
         }
         return fragment;
@@ -108,7 +129,7 @@
 
     function removeAllChildren(element) {
         var children = element.childNodes;
-        for (var i = children.length - 1; i >= 0; i--) {
+        for (var i = children.length - ONE; i >= ZERO; i--) {
             element.removeChild(children[i]);
         }
     }
@@ -117,17 +138,16 @@
         processorFunctions[key] = fn;
     }
 
-    var lib = {};
-    lib.build = build.bind(lib);
-    lib.buildFragment = buildFragment.bind(lib);
-    lib.removeAllChildren = removeAllChildren.bind(lib);
-    lib.defineProcessor = defineProcessor.bind(lib);
-
     Object.defineProperty(globalScope, libraryName, {
         writable: false,
         configurable: false,
         enumerable: false,
-        value: Object.freeze(lib)
+        value: Object.freeze({
+            build: build,
+            buildFragment: buildFragment,
+            defineProcessor: defineProcessor,
+            removeAllChildren: removeAllChildren
+        })
     });
 
 })(window, document, 'Elements');
