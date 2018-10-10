@@ -102,16 +102,18 @@ Resulting DOM:
 > </my-button>
 >```
 >  All properties are optional but the configuration `Object` itself is mandatory. Passing an emtpy configuration `Object` will create an empty DIV element without any attributes or listeners. Configuration `Object` can contain any properties, however the following properties will be handled by predefined processor functions:
-> - __afterNode__: Value must be of type [`Node`](https://developer.mozilla.org/en-US/docs/Web/API/Node). The constructed `HTMLElement` will be appended to the parent `Node` of your provided `Node`. It will appear immediatelly after your provided `Node`.
+> - __afterNode__: Value must be of type [`Node`](https://developer.mozilla.org/en-US/docs/Web/API/Node). The constructed `HTMLElement` will be appended to the parent `Node` (which must exist) of your provided `Node`. It will appear immediatelly after your provided `Node`.
 > ```javascript
 >   const button = Elements.build({ tag: 'button' });
->   const div = Elements.build({ node: button });
+>   const img = Elements.build({ tag: 'img' });
+>   const div = Elements.build({ nodes: [button, img] });
 >   Elements.build({ tag: 'a', afterNode: button });
 > ```
 > ```html
 > <div>
 >   <button></button>
 >   <a></a>
+>   <img/>
 > </div>
 > ```
 > - __appendTo__: Value must be of type [`Node`](https://developer.mozilla.org/en-US/docs/Web/API/Node). You can provide a `Node` object, to which your `HTMLElement` will be appended.
@@ -153,6 +155,20 @@ Resulting DOM:
 >   <p>
 >     Lorem ipsum...
 >   </p>
+> </div>
+> ```
+> - __beforeNode__: Value must be of type [`Node`](https://developer.mozilla.org/en-US/docs/Web/API/Node). The constructed `HTMLElement` will be appended to the parent `Node` (which must exist) of your provided reference `Node`. Added `HTMLElement` will appear just before the reference `Node`.
+> ```javascript
+>   const button = Elements.build({ tag: 'button' });
+>   const img = Elements.build({ tag: 'img' });
+>   const div = Elements.build({ nodes: [button, img] });
+>   Elements.build({ tag: 'a', beforeNode: img });
+> ```
+> ```html
+> <div>
+>   <button></button>
+>   <a></a>
+>   <img/>
 > </div>
 > ```
 > - __children__: Value must be of type `Object[]`. Each `Object` within the [`Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) will be used as the configuration to build nested `HTMLElement` objects. You can nest elements as deeply as you like.
