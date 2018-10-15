@@ -1,0 +1,25 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Krub', sans-serif;
+    color: #505050;
+}
+
+.icon {
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#content-wrapper {
+    flex: 1;
+    display: flex;
+}

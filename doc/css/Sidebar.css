@@ -1,0 +1,32 @@
+aside ul {
+    list-style: none;
+    padding-left: 0px;
+    overflow: hidden;
+}
+
+aside li {
+    display: block;
+}
+
+aside li > label {
+    padding: 5px 15px 5px 15px;
+    display: block;
+    min-width: 200px;
+}
+
+aside li > label:hover {
+    background-color: lightgray;
+}
+
+aside > ul > li > label {
+    font-weight: 700;
+}
+
+aside li > ul {
+    height: 0px;
+    transition: height 400ms;
+}
+
+aside li.open > ul {
+    height: auto;
+}
