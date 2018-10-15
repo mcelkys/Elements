@@ -1,5 +1,5 @@
 /**
- *  Elements 1.4.0
+ *  Elements 1.3.1
  *  Copyright (c) 2018 Mindaugas Celkys
  *  Released under the MIT License.
  */
