@@ -1,3 +1,9 @@
+/**
+ *  Elements 1.4.0
+ *  Copyright (c) 2018 Mindaugas Celkys
+ *  Released under the MIT License.
+ */
+
 (function(globalScope, domApiInterface, libraryName) {
 
     var ZERO = 0;
