@@ -13,6 +13,13 @@ body {
     color: #505050;
 }
 
+button {
+    background-color: transparent;
+    border: none;
+    font-size: inherit;
+    outline: none;
+}
+
 .icon {
     background-size: contain;
     background-position: center;

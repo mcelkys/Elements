@@ -1,10 +1,12 @@
 /**
- *  Elements 1.3.1
+ *  Elements 1.3.2
  *  Copyright (c) 2018 Mindaugas Celkys
  *  Released under the MIT License.
  */
 
 (function(globalScope, domApiInterface, libraryName) {
+
+    'use strict';
 
     var ZERO = 0;
     var ONE = 1;
@@ -27,86 +29,105 @@
         return passiveSupported ? { passive: true } : false;
     })();
 
-    var processorFunctions = {
-
-        attributes: function(element, attributes) {
-            for (var attribute in attributes) {
-                element.setAttribute(attribute, attributes[attribute]);
-            }
-        },
-
-        listeners: function(element, listeners) {
-            for (var event in listeners) {
-                element.addEventListener(event, listeners[event], EVENT_LISTENER_OPTIONS);
-            }
-        },
-
-        children: function(element, children) {
-            element.appendChild(buildFragment(children));
-        },
-
-        child: function(element, child) {
-            element.appendChild(build(child));
-        },
-
-        text: function(element, text) {
-            element.appendChild(domApiInterface.createTextNode(text));
-        },
-
-        style: function(element, styles) {
-            for (var style in styles) {
-                element.style.setProperty(style, styles[style]);
-            }
-        },
-
-        nodes: function(element, children) {
-            var fragment = domApiInterface.createDocumentFragment();
-            for (var i = ZERO; i < children.length; i++) {
-                fragment.appendChild(children[i]);
-            }
-            element.appendChild(fragment);
-        },
-
-        node: function(element, child) {
-            element.appendChild(child);
-        },
-
-        appendTo: function(element, parent) {
-            parent.appendChild(element);
-        },
-
-        class: function(element, classes) {
-            var split = (typeof classes === STRING ? classes : String(classes)).split(SPACE);
-            var classList = element.classList;
-            classList.add.apply(classList, split);
-        },
-
-        set: function(element, properties) {
-            for (var property in properties) {
-                element[property] = properties[property];
-            }
-        },
-
-        prependTo: function(element, parent) {
-            var firstChild = parent.firstChild;
-            if (firstChild) parent.insertBefore(element, firstChild);
-            else parent.appendChild(element);
-        },
-
-        replaceNode: function(element, oldElement) {
-            oldElement.parentNode.replaceChild(element, oldElement);
-        },
-
-        beforeNode: function(element, sibling) {
-            sibling.parentNode.insertBefore(element, sibling);
-        },
-
-        afterNode: function(element, sibling) {
-            var nextSibling = sibling.nextSibling;
-            if (nextSibling) nextSibling.parentNode.insertBefore(element, nextSibling);
-            else sibling.parentNode.appendChild(element);
+    function processAttributes(element, attributes) {
+        for (var attribute in attributes) {
+            element.setAttribute(attribute, attributes[attribute]);
         }
+    }
 
+    function processListeners(element, listeners) {
+        for (var event in listeners) {
+            element.addEventListener(event, listeners[event], EVENT_LISTENER_OPTIONS);
+        }
+    }
+
+    function processChildren(element, children) {
+        var len = children.length;
+        for (var i = ZERO; i < len; i++) {
+            element.appendChild(build(children[i]));
+        }
+    }
+
+    function processChild(element, child) {
+        element.appendChild(build(child));
+    }
+
+    function processText(element, text) {
+        element.textContent = text;
+    }
+
+    function processStyle(element, styles) {
+        var elementStyle = element.style;
+        for (var style in styles) {
+            elementStyle.setProperty(style, styles[style]);
+        }
+    }
+
+    function processNodes(element, children) {
+        var len = children.length;
+        for (var i = ZERO; i < len; i++) {
+            element.appendChild(children[i]);
+        }
+    }
+
+    function processNode(element, child) {
+        element.appendChild(child);
+    }
+
+    function processAppending(element, parent) {
+        parent.appendChild(element);
+    }
+
+    function processClass(element, classes) {
+        var split = (typeof classes === STRING ? classes : String(classes)).split(SPACE);
+        var classList = element.classList;
+        classList.add.apply(classList, split);
+    }
+
+    function processSetters(element, properties) {
+        for (var property in properties) {
+            element[property] = properties[property];
+        }
+    }
+
+    function processPrepending(element, parent) {
+        var firstChild = parent.firstChild;
+        if (firstChild) parent.insertBefore(element, firstChild);
+        else parent.appendChild(element);
+    }
+
+    function processReplacingNode(element, oldElement) {
+        oldElement.parentNode.replaceChild(element, oldElement);
+    }
+
+    function processInsertingBeforeNode(element, sibling) {
+        sibling.parentNode.insertBefore(element, sibling);
+    }
+
+    function processInsertingAfterNode(element, sibling) {
+        var nextSibling = sibling.nextSibling;
+        if (nextSibling) nextSibling.parentNode.insertBefore(element, nextSibling);
+        else sibling.parentNode.appendChild(element);
+    }
+
+    var processorFunctions = {
+        afterNode: processInsertingAfterNode,
+        appendTo: processAppending,
+        atts: processAttributes,
+        attributes: processAttributes,
+        beforeNode: processInsertingBeforeNode,
+        child: processChild,
+        children: processChildren,
+        class: processClass,
+        listeners: processListeners,
+        node: processNode,
+        nodes: processNodes,
+        on: processListeners,
+        prependTo: processPrepending,
+        replaceNode: processReplacingNode,
+        set: processSetters,
+        style: processStyle,
+        text: processText
     };
 
     function build(config) {
@@ -127,7 +148,8 @@
 
     function buildFragment(configs) {
         var fragment = domApiInterface.createDocumentFragment();
-        for (var i = ZERO; i < configs.length; i++) {
+        var len = configs.length;
+        for (var i = ZERO; i < len; i++) {
             fragment.appendChild(build(configs[i]));
         }
         return fragment;

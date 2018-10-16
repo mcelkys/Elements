@@ -1,8 +1,8 @@
 Templates.withoutKey('toolbar', (config, register, controller) => {
     const searchInput = Elements.build({
         tag: 'input',
-        attributes: { type: 'text', placeholder: 'Search...' },
-        listeners: {
+        atts: { type: 'text', placeholder: 'Search...' },
+        on: {
             focus: controller.onSearchInputFocus.bind(controller),
             blur: controller.onSearchInputBlur.bind(controller)
         }
@@ -15,7 +15,13 @@ Templates.withoutKey('toolbar', (config, register, controller) => {
         tag: 'nav',
         id: 'toolbar',
         children: [
-            { tag: 'h1', text: 'Elements' },
+            {
+                tag: 'h1',
+                children: [
+                    { tag: 'span', text: 'Elements' },
+                    { tag: 'span', id: 'version', text: '1.3.1' }
+                ]
+            },
             { id: 'search-wrapper', node: search },
             {
                 id: 'external-links',

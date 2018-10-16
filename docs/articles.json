@@ -1,140 +1,140 @@
 [
     {
-        "name": "Topic",
+        "title": "Topic",
         "children": [
             {
-                "name": "Section",
+                "title": "Section",
                 "children": [
                     {
-                        "name": "Sub-section"
+                        "title": "Sub-section"
                     },
                     {
-                        "name": "Sub-section"
+                        "title": "Sub-section"
                     },
                     {
-                        "name": "Sub-section"
+                        "title": "Sub-section"
                     }
                 ]
             },
             {
-                "name": "Section",
+                "title": "Section",
                 "children": [
                     {
-                        "name": "Sub-section"
+                        "title": "Sub-section"
                     },
                     {
-                        "name": "Sub-section"
+                        "title": "Sub-section"
                     },
                     {
-                        "name": "Sub-section"
+                        "title": "Sub-section"
                     }
                 ]
             },
             {
-                "name": "Section",
+                "title": "Section",
                 "children": [
                     {
-                        "name": "Sub-section"
+                        "title": "Sub-section"
                     },
                     {
-                        "name": "Sub-section"
+                        "title": "Sub-section"
                     },
                     {
-                        "name": "Sub-section"
+                        "title": "Sub-section"
                     }
                 ]
             }
         ]
     },
     {
-        "name": "Topic",
+        "title": "Topic",
         "children": [
             {
-                "name": "Section",
+                "title": "Section",
                 "children": [
                     {
-                        "name": "Sub-section"
+                        "title": "Sub-section"
                     },
                     {
-                        "name": "Sub-section"
+                        "title": "Sub-section"
                     },
                     {
-                        "name": "Sub-section"
+                        "title": "Sub-section"
                     }
                 ]
             },
             {
-                "name": "Section",
+                "title": "Section",
                 "children": [
                     {
-                        "name": "Sub-section"
+                        "title": "Sub-section"
                     },
                     {
-                        "name": "Sub-section"
+                        "title": "Sub-section"
                     },
                     {
-                        "name": "Sub-section"
+                        "title": "Sub-section"
                     }
                 ]
             },
             {
-                "name": "Section",
+                "title": "Section",
                 "children": [
                     {
-                        "name": "Sub-section"
+                        "title": "Sub-section"
                     },
                     {
-                        "name": "Sub-section"
+                        "title": "Sub-section"
                     },
                     {
-                        "name": "Sub-section"
+                        "title": "Sub-section"
                     }
                 ]
             }
         ]
     },
     {
-        "name": "Topic",
+        "title": "Topic",
         "children": [
             {
-                "name": "Section",
+                "title": "Section",
                 "children": [
                     {
-                        "name": "Sub-section"
+                        "title": "Sub-section"
                     },
                     {
-                        "name": "Sub-section"
+                        "title": "Sub-section"
                     },
                     {
-                        "name": "Sub-section"
+                        "title": "Sub-section"
                     }
                 ]
             },
             {
-                "name": "Section",
+                "title": "Section",
                 "children": [
                     {
-                        "name": "Sub-section"
+                        "title": "Sub-section"
                     },
                     {
-                        "name": "Sub-section"
+                        "title": "Sub-section"
                     },
                     {
-                        "name": "Sub-section"
+                        "title": "Sub-section"
                     }
                 ]
             },
             {
-                "name": "Section",
+                "title": "Section",
                 "children": [
                     {
-                        "name": "Sub-section"
+                        "title": "Sub-section"
                     },
                     {
-                        "name": "Sub-section"
+                        "title": "Sub-section"
                     },
                     {
-                        "name": "Sub-section"
+                        "title": "Sub-section"
                     }
                 ]
             }

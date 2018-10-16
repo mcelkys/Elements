@@ -2,24 +2,29 @@ aside ul {
     list-style: none;
     padding-left: 0px;
     overflow: hidden;
+    font-size: 0.9em;
+}
+
+aside > ul {
+    font-size: 1.15rem;
 }
 
 aside li {
     display: block;
 }
 
-aside li > label {
-    padding: 5px 15px 5px 15px;
+aside li > button {
+    text-align: left;
+    padding-top: 5px;
+    padding-right: 15px;
+    padding-bottom: 5px;
+    padding-left: calc(100% - 10em);
     display: block;
     min-width: 200px;
 }
 
-aside li > label:hover {
+aside li > button:hover {
     background-color: lightgray;
-}
-
-aside > ul > li > label {
-    font-weight: 700;
 }
 
 aside li > ul {

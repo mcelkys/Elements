@@ -8,6 +8,12 @@
     margin: 0px;
 }
 
+#version {
+    margin-left: 10px;
+    font-size: 0.6em;
+    color: #c3c3c3;
+}
+
 #search-wrapper {
     flex: 1;
     margin: 0px 50px 0px 50px;
