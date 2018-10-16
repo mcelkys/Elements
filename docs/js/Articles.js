@@ -14,6 +14,14 @@ const Articles = (function() {
         return articles;
     }
 
+    function compileRegex(query) {
+        try {
+            return new RegExp(query, 'ig');
+        } catch(e) {
+            return new RegExp;
+        }
+    }
+
     return {
 
         retrieve() {
@@ -29,7 +37,7 @@ const Articles = (function() {
         },
 
         search(query) {
-            const regex = new RegExp(query, 'i');
+            const regex = compileRegex(query);
             return new Promise((resolve, reject) => {
                 this.retrieve().then(articles => {
                     resolve(Array.from(lookup.values()).filter(article => regex.test(article.title)));
