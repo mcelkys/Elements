@@ -4,7 +4,8 @@ Templates.withoutKey('toolbar', (config, register, controller) => {
         atts: { type: 'text', placeholder: 'Search...' },
         on: {
             focus: controller.onSearchInputFocus.bind(controller),
-            blur: controller.onSearchInputBlur.bind(controller)
+            blur: controller.onSearchInputBlur.bind(controller),
+            keyup: controller.onSearchInputKeyUp.bind(controller)
         }
     });
     const search = Elements.build({

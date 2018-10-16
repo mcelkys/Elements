@@ -30,6 +30,8 @@ const InstanceManager = (function() {
 
                 has: () => !!instance,
 
+                all: () => [instance],
+
                 clean(inst) {
                     if (instance === inst)
                         instance = null;
@@ -51,6 +53,8 @@ const InstanceManager = (function() {
                 get: instances.get.bind(instances),
 
                 has: instances.has.bind(instances),
+
+                all: () => Array.from(instances.values()),
 
                 clean(key, instance) {
                     const existing = instances.get(key);
@@ -79,6 +83,8 @@ const InstanceManager = (function() {
                 get: instances.get.bind(instances),
 
                 has: instances.has.bind(instances),
+
+                all: () => Array.from(instances.values()).reduce((all, some) => all.concat(some), []),
 
                 clean(key, instance) {
                     const all = instances.get(key);

@@ -13,6 +13,11 @@ aside li {
     display: block;
 }
 
+aside li.active > button {
+    background-color: grey;
+    color: white;
+}
+
 aside li > button {
     text-align: left;
     padding-top: 5px;

@@ -1,10 +1,41 @@
 const Articles = (function() {
 
-    const retrieved =  fetch('articles.json').then(response => response.json());
+    const retrieved =  fetch('articles.json').then(response => response.json()).then(articles => assignKeys(articles, new Uint32Array));
+    const lookup = new Map;
+
+    function assignKeys(articles, parentKey) {
+        articles.forEach((article, index) => {
+            const key = Uint32Array.of(...parentKey, index);
+            article.key = key.join(':');
+            lookup.set(article.key, article);
+            if (article.children instanceof Array)
+                assignKeys(article.children, key);
+        });
+        return articles;
+    }
 
     return {
 
-        get: () => Promise.resolve(retrieved)
+        retrieve() {
+            return Promise.resolve(retrieved);
+        },
+
+        get(key) {
+            return new Promise((resolve, reject) => {
+                this.retrieve().then(articles => {
+                    resolve(lookup.get(key));
+                }).catch(reject);
+            });
+        },
+
+        search(query) {
+            const regex = new RegExp(query, 'i');
+            return new Promise((resolve, reject) => {
+                this.retrieve().then(articles => {
+                    resolve(Array.from(lookup.values()).filter(article => regex.test(article.title)));
+                }).catch(reject);
+            });
+        }
 
     };
 
