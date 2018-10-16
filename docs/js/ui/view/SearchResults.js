@@ -1,6 +1,13 @@
 Templates.withoutKey('search-results', ({ query }, register, controller) => {
-    const node = Elements.build({ tag: 'ul', id: 'search-results' });
-    register(node, node);
+    const list = Elements.build({ tag: 'ul' });
+    const node = Elements.build({
+        id: 'search-results',
+        nodes: [
+            Elements.build({ tag: 'h2', text: `Results for /${query}/ig` }),
+            list
+        ]
+    });
+    register(node, { list });
     controller.onRender(query);
     return node;
 });
