@@ -12,6 +12,7 @@ Templates.controllerFor('toolbar', instances => {
             const instance = instances.get();
             if (instance) {
                 instance.search.classList.remove('focused');
+                instance.searchInput.value = '';
             }
         }
 

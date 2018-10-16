@@ -1,17 +1,15 @@
 Templates.withoutKey('toolbar', (config, register, controller) => {
+    const searchInput = Elements.build({
+        tag: 'input',
+        attributes: { type: 'text', placeholder: 'Search...' },
+        listeners: {
+            focus: controller.onSearchInputFocus.bind(controller),
+            blur: controller.onSearchInputBlur.bind(controller)
+        }
+    });
     const search = Elements.build({
         id: 'search',
-        children: [
-            { class: 'icon' },
-            {
-                tag: 'input',
-                attributes: { type: 'text', placeholder: 'Search...' },
-                listeners: {
-                    focus: controller.onSearchInputFocus.bind(controller),
-                    blur: controller.onSearchInputBlur.bind(controller)
-                }
-            }
-        ]
+        nodes: [ Elements.build({ class: 'icon' }), searchInput ]
     });
     const node = Elements.build({
         tag: 'nav',
@@ -32,6 +30,6 @@ Templates.withoutKey('toolbar', (config, register, controller) => {
             }
         ]
     });
-    register(node, { search });
+    register(node, { search, searchInput });
     return node;
 });
