@@ -1,0 +1,16 @@
+article {
+    padding: 10px 50px 10px 50px;
+    flex-basis: 1280px;
+}
+
+article h2 {
+    font-size: 2em;
+}
+
+article h3 {
+    font-size: 1.4em;
+}
+
+article section {
+    padding: 10px;
+}

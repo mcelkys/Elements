@@ -3,7 +3,7 @@ Templates.withoutKey('search-results', ({ query }, register, controller) => {
     const node = Elements.build({
         id: 'search-results',
         nodes: [
-            Elements.build({ tag: 'h2', text: `Results for /${query}/ig` }),
+            Elements.build({ tag: 'h2', text: `Results for /${query}/gi` }),
             list
         ]
     });

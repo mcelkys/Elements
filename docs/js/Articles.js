@@ -16,7 +16,7 @@ const Articles = (function() {
 
     function compileRegex(query) {
         try {
-            return new RegExp(query, 'ig');
+            return new RegExp(query, 'gi');
         } catch(e) {
             return new RegExp;
         }

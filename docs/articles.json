@@ -1,6 +1,19 @@
 [
     {
-        "title": "Topic",
+        "title": "Elements.build()",
+        "description": "This is a short overview of the topic at hand.",
+        "render": [
+            {
+                "tag": "p",
+                "text": "This is a short overview of the topic at hand."
+            },
+            {
+                "tag": "section",
+                "children": [
+                    { "tag": "h3", "text": "Parameters" }
+                ]
+            }
+        ],
         "children": [
             {
                 "title": "Section",
@@ -47,7 +60,7 @@
         ]
     },
     {
-        "title": "Topic",
+        "title": "Elements.buildFragment()",
         "children": [
             {
                 "title": "Section",
@@ -94,7 +107,7 @@
         ]
     },
     {
-        "title": "Topic",
+        "title": "Elements.defineProcessor()",
         "children": [
             {
                 "title": "Section",
@@ -139,5 +152,8 @@
                 ]
             }
         ]
+    },
+    {
+        "title": "Elements.removeAllChildren()"
     }
 ]

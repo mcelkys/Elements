@@ -2,7 +2,7 @@ Templates.controllerFor('main', instances => {
 
     function build({ template, params }) {
         const instance = instances.get();
-        if (instance && template === 'search-results') {
+        if (instance) {
             if (instance.content)
                 instance.node.removeChild(instance.content);
             instance.content = Templates.render(template, params);

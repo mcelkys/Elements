@@ -7,6 +7,8 @@ aside ul {
 
 aside > ul {
     font-size: 1.15rem;
+    padding: 15px 0px 15px 0px;
+    margin: 0px;
 }
 
 aside li {
@@ -23,8 +25,9 @@ aside li > button {
     padding-top: 5px;
     padding-right: 15px;
     padding-bottom: 5px;
-    padding-left: calc(100% - 10em);
+    padding-left: calc(200px - 10em);
     display: block;
+    width: 100%;
     min-width: 200px;
 }
 

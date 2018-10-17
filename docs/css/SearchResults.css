@@ -1,0 +1,22 @@
+#search-results {
+    padding: 20px 50px 20px 50px;
+    flex-basis: 1280px;
+}
+
+#search-results > h2 {
+    font-size: 1.3em;
+}
+
+#search-results > ul {
+    list-style: none;
+    padding: 10px;
+}
+
+#search-results > ul > li {
+    padding: 5px 15px 5px 15px;
+    cursor: pointer;
+}
+
+#search-results > ul > li:hover {
+    background-color: lightgrey;
+}
