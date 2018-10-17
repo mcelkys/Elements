@@ -53,7 +53,9 @@
                                         },
                                         {
                                             tag: 'p',
-                                            html: `All properties are optional, including the <b>tag</b> option. However, the options ${OBJECT} itself is required.`
+                                            html: `All properties are optional, including the <b>tag</b> option. However, the options ${OBJECT} itself is required.
+                                            There are <b>processor</b> functions built into Elements for: <i>afterNode, appendTo, attributes, atts, beforeNode,
+                                            child, children, class, html, listeners, node, nodes, on, prependTo, replaceNode, set, style, text</i>.`
                                         }
                                     ]
                                 }
