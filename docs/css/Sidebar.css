@@ -25,10 +25,10 @@ aside li > button {
     padding-top: 5px;
     padding-right: 15px;
     padding-bottom: 5px;
-    padding-left: calc(200px - 10em);
+    padding-left: calc(260px - 13em);
     display: block;
     width: 100%;
-    min-width: 200px;
+    min-width: 260px;
 }
 
 aside li > button:hover {

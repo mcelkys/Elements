@@ -1,5 +1,5 @@
 /**
- *  Elements 1.3.2
+ *  Elements 1.4.0-alpha
  *  Copyright (c) 2018 Mindaugas Celkys
  *  Released under the MIT License.
  */
@@ -110,15 +110,20 @@
         else sibling.parentNode.appendChild(element);
     }
 
+    function processHTML(element, html) {
+        element.innerHTML = html;
+    }
+
     var processorFunctions = {
         afterNode: processInsertingAfterNode,
         appendTo: processAppending,
-        atts: processAttributes,
         attributes: processAttributes,
+        atts: processAttributes,
         beforeNode: processInsertingBeforeNode,
         child: processChild,
         children: processChildren,
         class: processClass,
+        html: processHTML,
         listeners: processListeners,
         node: processNode,
         nodes: processNodes,

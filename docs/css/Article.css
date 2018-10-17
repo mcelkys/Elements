@@ -1,6 +1,6 @@
 article {
     padding: 10px 50px 10px 50px;
-    flex-basis: 1280px;
+    flex-basis: 80%;
 }
 
 article h2 {
@@ -12,5 +12,49 @@ article h3 {
 }
 
 article section {
+    padding: 10px 20px 10px 20px;
+}
+
+article dfn {
+    background-color: #e0e0e0;
+    font-size: 0.875em;
+    border-radius: 2px;
+    display: inline-block;
+    padding: 2px 7px 2px 7px;
+    font-style: normal;
+    font-weight: 600;
+}
+
+article dt {
+    display: inline-block;
+    padding: 2px 7px 2px 7px;
+    background-color: #4c4c4c;
+    color: white;
+    border-radius: 3px;
+}
+
+article .responsive {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+article .responsive > * {
+    display: block;
+    flex-grow: 1;
+    flex-shrink: 0;
+}
+
+article pre {
     padding: 10px;
+    margin: 0px;
+}
+
+article code {
+    display: block;
+    background-color: #e3f6fb;
+    color: #1b1b1b;
+    padding: 20px;
+    border-left: #5f9eaf solid 4px;
+    border-radius: 0px 5px 5px 0px;
+    font-size: 1.15em;
 }

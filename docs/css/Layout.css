@@ -28,6 +28,8 @@ button {
 }
 
 #content-wrapper {
-    flex: 1;
+    flex-grow: 1;
+    flex-shrink: 1;
+    min-height: 0px;
     display: flex;
 }
