@@ -18,13 +18,14 @@ article section {
 }
 
 article dfn {
-    background-color: #e0e0e0;
+    background-color: #ececec;
     font-size: 0.875em;
     border-radius: 2px;
     display: inline-block;
     padding: 2px 7px 2px 7px;
     font-style: normal;
     font-weight: 600;
+    margin: 1px 0px 1px 0px;
 }
 
 article dt {
@@ -53,11 +54,12 @@ article pre {
 
 article code {
     display: block;
-    background-color: #e3f6fb;
+    background-color: #f0f9fb;
     color: #1b1b1b;
     padding: 20px;
-    border-left: #5f9eaf solid 4px;
-    border-radius: 0px 5px 5px 0px;
+/*     border-left: #5f9eaf solid 4px;
+    border-radius: 0px 5px 5px 0px; */
+    border-radius: 5px;
     font-size: 1.15em;
 }
 

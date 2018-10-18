@@ -29,7 +29,7 @@ Templates.controllerFor('layout', instances => {
 
     return {
 
-        onOverlayClick() {
+        onOverlayClick(event) {
             const instance = instances.get();
             if (instance && instance.overlay === event.target) {
                 Events.dispatch('closing-sidebar');
