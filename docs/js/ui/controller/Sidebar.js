@@ -1,5 +1,19 @@
 Templates.controllerFor('sidebar', instances => {
 
+    Events.when('opening-sidebar', event => {
+        const instance = instances.get();
+        if (instance) {
+            instance.node.classList.add('open');
+        }
+    });
+
+    Events.when('closing-sidebar', event => {
+        const instance = instances.get();
+        if (instance) {
+            instance.node.classList.remove('open');
+        }
+    });
+
     return {
 
         onRender() {

@@ -33,3 +33,22 @@ button {
     min-height: 0px;
     display: flex;
 }
+
+#overlay {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.4);
+    z-index: 1;
+    transition: opacity 400ms;
+}
+
+#overlay.hidden {
+    display: none;
+}
+
+#overlay.invisible {
+    opacity: 0;
+}

@@ -17,6 +17,11 @@ Templates.withoutKey('toolbar', (config, register, controller) => {
         id: 'toolbar',
         children: [
             {
+                tag: 'button',
+                class: 'icon',
+                on: { click: controller.onMenuButtonClick.bind(controller) }
+            },
+            {
                 tag: 'h1',
                 children: [
                     { tag: 'span', text: 'Elements' },

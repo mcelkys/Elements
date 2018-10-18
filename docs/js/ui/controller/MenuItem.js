@@ -24,6 +24,7 @@ Templates.controllerFor('menu-item', instances => {
 
         onButtonClick(key) {
             Events.dispatch('routing', { template: 'article', params: { key } });
+            Events.dispatch('closing-sidebar');
         }
 
     };

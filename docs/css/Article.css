@@ -1,6 +1,8 @@
 article {
     padding: 10px 50px 10px 50px;
     flex-basis: 80%;
+    flex-shrink: 1;
+    max-width: 100%;
 }
 
 article h2 {
@@ -57,4 +59,32 @@ article code {
     border-left: #5f9eaf solid 4px;
     border-radius: 0px 5px 5px 0px;
     font-size: 1.15em;
+}
+
+@media (max-width: 1024px) {
+
+    article {
+        padding: 10px 30px 10px 30px;
+    }
+
+    article section {
+        padding: 5px 0px 5px 0px;
+    }
+
+    article section {
+        padding: 5px 0px 5px 0px;
+    }
+
+    article pre {
+        padding: 5px;
+    }
+
+}
+
+@media only screen and (max-width: 480px) {
+
+    article {
+        padding: 10px 15px 10px 15px;
+    }
+
 }

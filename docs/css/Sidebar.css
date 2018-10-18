@@ -1,13 +1,17 @@
+aside {
+    padding: 15px 0px 15px 0px;
+}
+
 aside ul {
     list-style: none;
     padding-left: 0px;
-    overflow: hidden;
+    overflow-y: auto;
     font-size: 0.9em;
+    max-height: 100%;
 }
 
 aside > ul {
     font-size: 1.15rem;
-    padding: 15px 0px 15px 0px;
     margin: 0px;
 }
 
@@ -42,4 +46,26 @@ aside li > ul {
 
 aside li.open > ul {
     height: auto;
+}
+
+@media (max-width: 1024px) {
+
+    aside {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        height: 100vh;
+        max-width: 90vw;
+        background-color: white;
+        box-shadow: 2px 0px 15px rgba(0,0,0,0.3);
+        z-index: 2;
+        transform: translateX(-110%);
+        transition: transform 400ms;
+        will-change: transform;
+    }
+
+    aside.open {
+        transform: translateX(0px);
+    }
+
 }

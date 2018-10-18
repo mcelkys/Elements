@@ -21,6 +21,10 @@ Templates.controllerFor('toolbar', instances => {
             if (instance) {
                 Events.dispatch('routing', { template: 'search-results', params: { query: instance.searchInput.value.trim() } });
             }
+        },
+
+        onMenuButtonClick() {
+            Events.dispatch('opening-sidebar');
         }
 
     };
