@@ -15,7 +15,7 @@ const Routes = (function() {
     }
 
     if (!state) {
-        state = { template: 'article', params: { key: '0' } };
+        state = { template: 'home' };
         location.hash = encode();
     }
 

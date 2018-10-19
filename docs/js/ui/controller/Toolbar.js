@@ -1,6 +1,10 @@
 Templates.controllerFor('toolbar', instances => {
     return {
 
+        onTitleClick() {
+            Events.dispatch('routing', { template: 'home' });
+        },
+
         onSearchInputFocus() {
             const instance = instances.get();
             if (instance) {

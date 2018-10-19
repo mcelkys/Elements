@@ -23,6 +23,7 @@ Templates.withoutKey('toolbar', (config, register, controller) => {
             },
             {
                 tag: 'h1',
+                on: { click: controller.onTitleClick.bind(controller) },
                 children: [
                     { tag: 'span', text: 'Elements' },
                     { tag: 'span', id: 'version', text: '1.3.1' }

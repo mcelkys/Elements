@@ -17,6 +17,7 @@
 
 #toolbar > h1 {
     margin: 0px;
+    cursor: pointer;
 }
 
 #version {
