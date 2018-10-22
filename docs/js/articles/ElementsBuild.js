@@ -11,7 +11,7 @@ Articles.define('Elements.build()', Macro => [
             {
                 tag: 'dl',
                 children: [
-                    { tag: 'dt', text: 'Options' },
+                    { tag: 'dt', text: 'options' },
                     {
                         tag: 'dd',
                         children: [

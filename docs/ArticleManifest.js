@@ -27,14 +27,19 @@
         DOCUMENT_FRAGMENT: '<a href="https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment"><dfn>DocumentFragment</dfn></a>',
         NODE: '<a href="https://developer.mozilla.org/en-US/docs/Web/API/Node"><dfn>Node</dfn></a>',
         ELEMENTS_BUILD: '<a href="#eyJ0ZW1wbGF0ZSI6ImFydGljbGUiLCJwYXJhbXMiOnsia2V5IjoiMCJ9fQ=="><dfn>Elements.build()</dfn></a>',
+        ELEMENTS_BUILD_FRAGMENT: '<a href="#eyJ0ZW1wbGF0ZSI6ImFydGljbGUiLCJwYXJhbXMiOnsia2V5IjoiMSJ9fQ=="><dfn>Elements.buildFragment()</dfn></a>',
         ARRAY: '<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><dfn>Array</dfn></a>',
-        BODY: '<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/body"><dfn>&#60;body&#62;</dfn></a>'
+        BODY: '<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/body"><dfn>&#60;body&#62;</dfn></a>',
+        STRING: '<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String"><dfn>String</dfn></a>',
+        FUNCTION: '<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function"><dfn>Function</dfn></a>',
+        UNDEFINED: '<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined"><dfn>undefined</dfn></a>',
+        BUTTON: '<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button"><dfn>&#60;button&#62;</dfn></a>'
     });
 
     Articles.declare([
         {
             title: 'Elements.build()',
-            src: 'js/articles/ElementsBuild.js',
+            src: '/js/articles/ElementsBuild.js',
             children: [
                 {
                     title: 'afterNode'
@@ -94,13 +99,15 @@
         },
         {
             title: 'Elements.buildFragment()',
-            src: 'js/articles/ElementsBuildFragment.js'
+            src: '/js/articles/ElementsBuildFragment.js'
         },
         {
-            title: 'Elements.defineProcessor()'
+            title: 'Elements.defineProcessor()',
+            src: '/js/articles/ElementsDefineProcessor.js'
         },
         {
-            title: 'Elements.removeAllChildren()'
+            title: 'Elements.removeAllChildren()',
+            src: '/js/articles/ElementsRemoveAllChildren.js'
         }
     ]);
 

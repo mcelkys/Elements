@@ -14,7 +14,7 @@ Articles.define('Elements.buildFragment()', Macro => [
             {
                 tag: 'dl',
                 children: [
-                    { tag: 'dt', text: 'Options' },
+                    { tag: 'dt', text: 'options' },
                     {
                         tag: 'dd',
                         child: {

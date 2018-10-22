@@ -57,10 +57,17 @@ article code {
     background-color: #f0f9fb;
     color: #1b1b1b;
     padding: 20px;
-/*     border-left: #5f9eaf solid 4px;
-    border-radius: 0px 5px 5px 0px; */
     border-radius: 5px;
     font-size: 1.15em;
+}
+
+article samp {
+    display: block;
+    padding: 20px;
+    font-size: 1.05em;
+    border-radius: 5px;
+    background-color: #353535;
+    color: white;
 }
 
 @media (max-width: 1024px) {
