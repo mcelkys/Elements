@@ -137,6 +137,10 @@ button {
     opacity: 0.5;
 }
 
+#github-button {
+    background-image: url(../img/GitHub-Mark-32px.png);
+}
+
 @media (max-width: 1024px) {
 
     #toolbar > button {

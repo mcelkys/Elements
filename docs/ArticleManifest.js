@@ -39,7 +39,7 @@
     Articles.declare([
         {
             title: 'Elements.build()',
-            src: '/js/articles/ElementsBuild.js',
+            src: './js/articles/ElementsBuild.js',
             children: [
                 {
                     title: 'afterNode'
@@ -99,15 +99,15 @@
         },
         {
             title: 'Elements.buildFragment()',
-            src: '/js/articles/ElementsBuildFragment.js'
+            src: './js/articles/ElementsBuildFragment.js'
         },
         {
             title: 'Elements.defineProcessor()',
-            src: '/js/articles/ElementsDefineProcessor.js'
+            src: './js/articles/ElementsDefineProcessor.js'
         },
         {
             title: 'Elements.removeAllChildren()',
-            src: '/js/articles/ElementsRemoveAllChildren.js'
+            src: './js/articles/ElementsRemoveAllChildren.js'
         }
     ]);
 

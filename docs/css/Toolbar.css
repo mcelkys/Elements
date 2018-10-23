@@ -6,7 +6,7 @@
 }
 
 #toolbar > button {
-    background-image: url(/img/baseline_menu_black_36dp.png);
+    background-image: url(../img/baseline_menu_black_36dp.png);
     width:  30px;
     height: 30px;
     border-radius: 3px;
@@ -57,7 +57,7 @@
     width: 30px;
     flex-shrink: 0;
     margin-right: 20px;
-    background-image: url(/img/round_search_black_36dp.png);
+    background-image: url(../img/round_search_black_36dp.png);
 }
 
 #search > input {
@@ -81,6 +81,10 @@
     height: 30px;
     display: block;
     opacity: 0.5;
+}
+
+#github-button {
+    background-image: url(../img/GitHub-Mark-32px.png);
 }
 
 @media (max-width: 1024px) {

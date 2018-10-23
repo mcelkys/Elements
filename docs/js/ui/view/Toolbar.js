@@ -36,7 +36,7 @@ Templates.withoutKey('toolbar', (config, register, controller) => {
                     {
                         tag: 'a',
                         class: 'icon',
-                        style: { 'background-image': 'url(/img/GitHub-Mark-32px.png)' },
+                        id: 'github-button',
                         href: 'https://github.com/mcelkys/Elements'
                     }
                 ]
