@@ -354,7 +354,7 @@ Templates.withoutKey('toolbar', (config, register, controller) => {
                 on: { click: controller.onTitleClick.bind(controller) },
                 children: [
                     { tag: 'span', text: 'Elements' },
-                    { tag: 'span', id: 'version', text: '1.3.1' }
+                    { tag: 'span', id: 'version', text: '2.0.0' }
                 ]
             },
             { id: 'search-wrapper', node: search },
@@ -637,7 +637,7 @@ Templates.controllerFor('search-results', instances => {
             const instance = instances.get();
             if (instance) {
                 const results = Articles.search(query);
-                Elements.removeAllChildren(instance.list);
+                Elements.removeChildren(instance.list);
                 const fragment = document.createDocumentFragment();
                 for (let result of results) {
                     let node = Templates.render('search-result', result);
@@ -664,7 +664,7 @@ Templates.controllerFor('article', instances => {
             const instance = instances.get(key);
             const data = Articles.get(key);
             if (instance && data) {
-                Elements.removeAllChildren(instance);
+                Elements.removeChildren(instance);
                 Elements.build({ tag: 'h2', text: data.title, appendTo: instance });
                 if (data.render) {
                     if (data.render instanceof Array) {

@@ -1,5 +1,5 @@
 /**
- *  Elements 1.4.0-alpha
+ *  Elements 2.0.0-alpha
  *  Copyright (c) 2018 Mindaugas Celkys
  *  Released under the MIT License.
  */
@@ -8,13 +8,9 @@
 
     'use strict';
 
-    var ZERO = 0;
-    var ONE = 1;
-    var SPACE = ' ';
     var DIV = 'div';
     var TAG = 'tag';
     var FUNCTION = 'function';
-    var STRING = 'string';
     var EVENT_LISTENER_OPTIONS = (function() {
         var passiveSupported = false;
         try {
@@ -43,7 +39,7 @@
 
     function processChildren(element, children) {
         var len = children.length;
-        for (var i = ZERO; i < len; i++) {
+        for (var i = 0; i < len; i++) {
             element.appendChild(build(children[i]));
         }
     }
@@ -65,7 +61,7 @@
 
     function processNodes(element, children) {
         var len = children.length;
-        for (var i = ZERO; i < len; i++) {
+        for (var i = 0; i < len; i++) {
             element.appendChild(children[i]);
         }
     }
@@ -78,10 +74,12 @@
         parent.appendChild(element);
     }
 
-    function processClass(element, classes) {
-        var split = (typeof classes === STRING ? classes : String(classes)).split(SPACE);
-        var classList = element.classList;
-        classList.add.apply(classList, split);
+    function processClass(element, className) {
+        element.className = className;
+    }
+
+    function processId(element, id) {
+        element.id = id;
     }
 
     function processSetters(element, properties) {
@@ -124,6 +122,7 @@
         children: processChildren,
         class: processClass,
         html: processHTML,
+        id: processId,
         listeners: processListeners,
         node: processNode,
         nodes: processNodes,
@@ -154,21 +153,33 @@
     function buildFragment(configs) {
         var fragment = domApiInterface.createDocumentFragment();
         var len = configs.length;
-        for (var i = ZERO; i < len; i++) {
+        for (var i = 0; i < len; i++) {
             fragment.appendChild(build(configs[i]));
         }
         return fragment;
     }
 
-    function removeAllChildren(element) {
-        var children = element.childNodes;
-        for (var i = children.length - ONE; i >= ZERO; i--) {
-            element.removeChild(children[i]);
+    function removeChildren(node) {
+        var children = node.childNodes;
+        var len = children.length;
+        var removed = new Array(len);
+        for (var i = len - 1; i >= 0; i--) {
+            removed[i] = node.removeChild(children[i]);
         }
+        return removed;
     }
 
     function defineProcessor(key, fn) {
         processorFunctions[key] = fn;
+    }
+
+    function fragmentFrom(nodes) {
+        var fragment = domApiInterface.createDocumentFragment();
+        var len = nodes.length;
+        for (var i = 0; i < len; i++) {
+            fragment.appendChild(nodes[i]);
+        }
+        return fragment;
     }
 
     Object.defineProperty(globalScope, libraryName, {
@@ -179,7 +190,8 @@
             build: build,
             buildFragment: buildFragment,
             defineProcessor: defineProcessor,
-            removeAllChildren: removeAllChildren
+            fragmentFrom: fragmentFrom,
+            removeChildren: removeChildren
         })
     });
 

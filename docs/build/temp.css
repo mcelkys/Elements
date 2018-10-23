@@ -351,15 +351,19 @@ article dt {
     border-radius: 3px;
 }
 
+article .responsive > * {
+    display: block;
+    flex-grow: 1;
+    flex-shrink: 0;
+}
+
 article .responsive {
     display: flex;
     flex-wrap: wrap;
 }
 
-article .responsive > * {
-    display: block;
-    flex-grow: 1;
-    flex-shrink: 0;
+article .responsive > .responsive {
+    flex-shrink: 1;
 }
 
 article pre {

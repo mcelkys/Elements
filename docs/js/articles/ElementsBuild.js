@@ -49,7 +49,7 @@ Articles.define('Elements.build()', Macro => [
                                 tag: 'p',
                                 html: `All properties are optional, including the <b>tag</b> option. However, the options ${Macro.OBJECT} itself is required.
                                 There are <b>processor</b> functions built into Elements for: <i>${Macro.AFTER_NODE}, ${Macro.APPEND_TO}, ${Macro.ATTRIBUTES}, ${Macro.ATTS}, ${Macro.BEFORE_NODE},
-                                ${Macro.CHILD}, ${Macro.CHILDREN}, ${Macro.CLASS}, ${Macro.HTML}, ${Macro.LISTENERS}, ${Macro.NODE_}, ${Macro.NODES}, ${Macro.ON}, ${Macro.PREPEND_TO}, ${Macro.REPLACE_NODE}, ${Macro.SET}, ${Macro.STYLE}, ${Macro.TEXT}</i>.`
+                                ${Macro.CHILD}, ${Macro.CHILDREN}, ${Macro.CLASS}, ${Macro.HTML}, ${Macro.ID}, ${Macro.LISTENERS}, ${Macro.NODE_}, ${Macro.NODES}, ${Macro.ON}, ${Macro.PREPEND_TO}, ${Macro.REPLACE_NODE}, ${Macro.SET}, ${Macro.STYLE}, ${Macro.TEXT}</i>.`
                             }
                         ]
                     }

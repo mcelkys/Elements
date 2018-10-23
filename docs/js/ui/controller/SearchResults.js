@@ -6,7 +6,7 @@ Templates.controllerFor('search-results', instances => {
             const instance = instances.get();
             if (instance) {
                 const results = Articles.search(query);
-                Elements.removeAllChildren(instance.list);
+                Elements.removeChildren(instance.list);
                 const fragment = document.createDocumentFragment();
                 for (let result of results) {
                     let node = Templates.render('search-result', result);

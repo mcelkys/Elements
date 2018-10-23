@@ -26,7 +26,7 @@ Templates.withoutKey('toolbar', (config, register, controller) => {
                 on: { click: controller.onTitleClick.bind(controller) },
                 children: [
                     { tag: 'span', text: 'Elements' },
-                    { tag: 'span', id: 'version', text: '1.3.1' }
+                    { tag: 'span', id: 'version', text: '2.0.0' }
                 ]
             },
             { id: 'search-wrapper', node: search },
