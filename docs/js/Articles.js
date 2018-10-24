@@ -32,7 +32,7 @@ const Articles = (function() {
 
     function retrieve(article) {
         if (article && !article.retrieved && typeof article.src === 'string') {
-            Elements.build({
+            Elements.create({
                 tag: 'script',
                 atts: { type: 'application/javascript', src: article.src },
                 set: { async: true, defer: true },

@@ -2,7 +2,7 @@ Templates.withoutKey('layout', (config, register, controller) => {
     const fragment = document.createDocumentFragment();
     const toolbar = Templates.render('toolbar');
     fragment.appendChild(toolbar);
-    const content = Elements.build({
+    const content = Elements.create({
         id: 'content-wrapper',
         nodes: [
             Templates.render('sidebar'),
@@ -10,7 +10,7 @@ Templates.withoutKey('layout', (config, register, controller) => {
         ],
         appendTo: fragment
     });
-    const overlay = Elements.build({
+    const overlay = Elements.create({
         id: 'overlay',
         class: 'invisible hidden',
         on: { click: controller.onOverlayClick.bind(controller) },

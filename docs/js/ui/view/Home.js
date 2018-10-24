@@ -1,5 +1,5 @@
 Templates.withoutKey('home', (config, register, controller) => {
-    const node = Elements.build({
+    const node = Elements.create({
         id: 'home',
         child: {
             id: 'home-container',

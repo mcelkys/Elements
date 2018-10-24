@@ -1,10 +1,10 @@
-Articles.define('Elements.buildFragment()', Macro => [
+Articles.define('Fragments.create()', Macro => [
     {
         tag: 'p',
         html: `Creates a new ${Macro.DOCUMENT_FRAGMENT} instance containing an arbitrary number of ${Macro.HTML_ELEMENT} objects. A
         fragment can be appended as a simple ${Macro.NODE} object. However, keep in mind that the fragment itself
         will not be appendTo the DOM, but rather its contents will be transfered into the target parent ${Macro.NODE} leaving said
-        fragment empty. This function is only different from ${Macro.ELEMENTS_BUILD} in it that accepts an ${Macro.ARRAY} of option objects
+        fragment empty. This function is only different from ${Macro.ELEMENTS_CREATE} in it that accepts an ${Macro.ARRAY} of option objects
         (instead of one) and produces a ${Macro.DOCUMENT_FRAGMENT} rather than a single ${Macro.HTML_ELEMENT}.`
     },
     {
@@ -20,7 +20,7 @@ Articles.define('Elements.buildFragment()', Macro => [
                         child: {
                             tag: 'p',
                             html: `(Required) ${Macro.ARRAY} of option ${Macro.OBJECT} instances. Every instance in this ${Macro.ARRAY} must be a valid
-                            options object, that can be used with ${Macro.ELEMENTS_BUILD} function. Supplying an empty array will result in an empty
+                            options object, that can be used with ${Macro.ELEMENTS_CREATE} function. Supplying an empty array will result in an empty
                             ${Macro.DOCUMENT_FRAGMENT}.`
                         }
                     }
@@ -54,7 +54,7 @@ Articles.define('Elements.buildFragment()', Macro => [
                             {
                                 tag: 'code',
                                 text:
-`const fragment = Elements.buildFragment([
+`const fragment = Fragments.create([
     { tag: 'h1' },
     { tag: 'form' },
     { tag: 'button' }

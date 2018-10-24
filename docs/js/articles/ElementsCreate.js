@@ -1,4 +1,4 @@
-Articles.define('Elements.build()', Macro => [
+Articles.define('Elements.create()', Macro => [
     {
         tag: 'p',
         html: `Creates a new ${Macro.HTML_ELEMENT} instance, according to provided options. The resuling ${Macro.HTML_ELEMENT}
@@ -84,16 +84,16 @@ Articles.define('Elements.build()', Macro => [
                             {
                                 tag: 'code',
                                 text:
-`Elements.build({
+`Elements.create({
     children: [
         { class: 'css-class-selector' }
     ]
 });
-Elements.build({
+Elements.create({
     tag: 'input',
     type: 'password'
 });
-Elements.build({
+Elements.create({
     tag: 'nav',
     'my-custom-attribute': 'foo'
 });`

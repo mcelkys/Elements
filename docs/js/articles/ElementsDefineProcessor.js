@@ -2,7 +2,7 @@ Articles.define('Elements.defineProcessor()', Macro => [
     {
         tag: 'p',
         html: `Registers a new (or overrides an existing) <b>processor</b> function under the provided name. Said function
-        can used in the ${Macro.ELEMENTS_BUILD} and ${Macro.ELEMENTS_BUILD_FRAGMENT} functions as an <b>option</b>. <i>Elements</i> comes with a variety of pre-build
+        can used in the ${Macro.ELEMENTS_CREATE} and ${Macro.FRAGMENTS_CREATE} functions as an <b>option</b>. <i>Elements</i> comes with a variety of pre-build
         processor functions (e.g. <i>${Macro.NODE_}, ${Macro.ATTS}, ${Macro.ON}</i>), however if you wish to extend the functionality of this library, you can define new options.`
     },
     {
@@ -40,8 +40,8 @@ Articles.define('Elements.defineProcessor()', Macro => [
                                     },
                                     {
                                         tag: 'li',
-                                        html: `The value provided with <b>options</b> ${Macro.OBJECT} when ${Macro.ELEMENTS_BUILD} or
-                                        ${Macro.ELEMENTS_BUILD_FRAGMENT} functions are invoked. This value may be of any type.`
+                                        html: `The value provided with <b>options</b> ${Macro.OBJECT} when ${Macro.ELEMENTS_CREATE} or
+                                        ${Macro.FRAGMENTS_CREATE} functions are invoked. This value may be of any type.`
                                     }
                                 ]
                             }
@@ -81,7 +81,7 @@ Articles.define('Elements.defineProcessor()', Macro => [
     htmlElement.style.setProperty('height', pixelNumber + 'px');
 });
 
-Elements.build({ height: 200 });`
+Elements.create({ height: 200 });`
                             }
                         ]
                     },
@@ -116,7 +116,7 @@ Elements.build({ height: 200 });`
     htmlElement.addEventListener('click', handlerFunction, { passive: true });
 });
 
-const button = Elements.build({
+const button = Elements.create({
     tag: 'button',
     onClick: event => {
         console.log('Button was clicked!');

@@ -1,5 +1,5 @@
 Templates.withoutKey('toolbar', (config, register, controller) => {
-    const searchInput = Elements.build({
+    const searchInput = Elements.create({
         tag: 'input',
         atts: { type: 'text', placeholder: 'Search...' },
         on: {
@@ -8,11 +8,11 @@ Templates.withoutKey('toolbar', (config, register, controller) => {
             keyup: controller.onSearchInputKeyUp.bind(controller)
         }
     });
-    const search = Elements.build({
+    const search = Elements.create({
         id: 'search',
-        nodes: [ Elements.build({ class: 'icon' }), searchInput ]
+        nodes: [ Elements.create({ class: 'icon' }), searchInput ]
     });
-    const node = Elements.build({
+    const node = Elements.create({
         tag: 'nav',
         id: 'toolbar',
         children: [

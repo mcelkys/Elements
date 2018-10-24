@@ -258,7 +258,7 @@ const Articles = (function() {
 
     function retrieve(article) {
         if (article && !article.retrieved && typeof article.src === 'string') {
-            Elements.build({
+            Elements.create({
                 tag: 'script',
                 atts: { type: 'application/javascript', src: article.src },
                 set: { async: true, defer: true },
@@ -309,7 +309,7 @@ Templates.withoutKey('layout', (config, register, controller) => {
     const fragment = document.createDocumentFragment();
     const toolbar = Templates.render('toolbar');
     fragment.appendChild(toolbar);
-    const content = Elements.build({
+    const content = Elements.create({
         id: 'content-wrapper',
         nodes: [
             Templates.render('sidebar'),
@@ -317,7 +317,7 @@ Templates.withoutKey('layout', (config, register, controller) => {
         ],
         appendTo: fragment
     });
-    const overlay = Elements.build({
+    const overlay = Elements.create({
         id: 'overlay',
         class: 'invisible hidden',
         on: { click: controller.onOverlayClick.bind(controller) },
@@ -327,7 +327,7 @@ Templates.withoutKey('layout', (config, register, controller) => {
     return fragment;
 });
 Templates.withoutKey('toolbar', (config, register, controller) => {
-    const searchInput = Elements.build({
+    const searchInput = Elements.create({
         tag: 'input',
         atts: { type: 'text', placeholder: 'Search...' },
         on: {
@@ -336,11 +336,11 @@ Templates.withoutKey('toolbar', (config, register, controller) => {
             keyup: controller.onSearchInputKeyUp.bind(controller)
         }
     });
-    const search = Elements.build({
+    const search = Elements.create({
         id: 'search',
-        nodes: [ Elements.build({ class: 'icon' }), searchInput ]
+        nodes: [ Elements.create({ class: 'icon' }), searchInput ]
     });
-    const node = Elements.build({
+    const node = Elements.create({
         tag: 'nav',
         id: 'toolbar',
         children: [
@@ -375,14 +375,14 @@ Templates.withoutKey('toolbar', (config, register, controller) => {
     return node;
 });
 Templates.withoutKey('sidebar', (config, register, controller) => {
-    const menu = Elements.build({ tag: 'ul' });
-    const node = Elements.build({ tag: 'aside', node: menu });
+    const menu = Elements.create({ tag: 'ul' });
+    const node = Elements.create({ tag: 'aside', node: menu });
     register(node, { menu, node });
     controller.onRender();
     return node;
 });
 Templates.withUniqueKey('menu-item', ({ data, state }, register, controller) => {
-    const node = Elements.build({
+    const node = Elements.create({
         tag: 'li',
         atts: {
             class: (state.template === 'article') ? `${state.params.key.startsWith(data.key) ? 'open' : ''} ${state.params.key === data.key ? 'active' : ''}` : ''
@@ -400,13 +400,13 @@ Templates.withUniqueKey('menu-item', ({ data, state }, register, controller) => 
     return node;
 });
 Templates.withoutKey('main', (config, register, controller) => {
-    const node = Elements.build({ tag: 'main' });
+    const node = Elements.create({ tag: 'main' });
     register(node, { node, cache: new Map });
     controller.onRender();
     return node;
 });
 Templates.withoutKey('home', (config, register, controller) => {
-    const node = Elements.build({
+    const node = Elements.create({
         id: 'home',
         child: {
             id: 'home-container',
@@ -431,11 +431,11 @@ Templates.withoutKey('home', (config, register, controller) => {
     return node;
 });
 Templates.withoutKey('search-results', ({ query }, register, controller) => {
-    const list = Elements.build({ tag: 'ul' });
-    const node = Elements.build({
+    const list = Elements.create({ tag: 'ul' });
+    const node = Elements.create({
         id: 'search-results',
         nodes: [
-            Elements.build({ tag: 'h2', text: `Results for /${query}/gi` }),
+            Elements.create({ tag: 'h2', text: `Results for /${query}/gi` }),
             list
         ]
     });
@@ -444,7 +444,7 @@ Templates.withoutKey('search-results', ({ query }, register, controller) => {
     return node;
 });
 Templates.withUniqueKey('search-result', (data, register, controller) => {
-    const node = Elements.build({
+    const node = Elements.create({
         tag: 'li',
         text: data.title,
         on: { click: controller.onClick.bind(controller, data.key) }
@@ -452,7 +452,7 @@ Templates.withUniqueKey('search-result', (data, register, controller) => {
     return node;
 });
 Templates.withUniqueKey('article', ({ key }, register, controller) => {
-    const node = Elements.build({ tag: 'article' });
+    const node = Elements.create({ tag: 'article' });
     register(node, key, node);
     controller.onRender(key);
     return node;
@@ -665,13 +665,13 @@ Templates.controllerFor('article', instances => {
             const data = Articles.get(key);
             if (instance && data) {
                 Elements.removeChildren(instance);
-                Elements.build({ tag: 'h2', text: data.title, appendTo: instance });
+                Elements.create({ tag: 'h2', text: data.title, appendTo: instance });
                 if (data.render) {
                     if (data.render instanceof Array) {
-                        const fragment = Elements.buildFragment(data.render);
+                        const fragment = Fragments.create(data.render);
                         instance.appendChild(fragment);
                     } else {
-                        const node = Elements.build(data.render);
+                        const node = Elements.create(data.render);
                         instance.appendChild(node);
                     }
                 }

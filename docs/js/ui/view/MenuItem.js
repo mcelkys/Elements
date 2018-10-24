@@ -1,5 +1,5 @@
 Templates.withUniqueKey('menu-item', ({ data, state }, register, controller) => {
-    const node = Elements.build({
+    const node = Elements.create({
         tag: 'li',
         atts: {
             class: (state.template === 'article') ? `${state.params.key.startsWith(data.key) ? 'open' : ''} ${state.params.key === data.key ? 'active' : ''}` : ''

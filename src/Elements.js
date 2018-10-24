@@ -4,7 +4,7 @@
  *  Released under the MIT License.
  */
 
-(function(globalScope, domApiInterface, libraryName) {
+(function(globalScope, domApi) {
 
     'use strict';
 
@@ -14,7 +14,7 @@
     var EVENT_LISTENER_OPTIONS = (function() {
         var passiveSupported = false;
         try {
-            domApiInterface.createElement(DIV).addEventListener('click', function() {}, Object.defineProperty({}, 'passive', {
+            domApi.createElement(DIV).addEventListener('click', function() {}, Object.defineProperty({}, 'passive', {
                 get: function() {
                     passiveSupported = true;
                 }
@@ -40,12 +40,12 @@
     function processChildren(element, children) {
         var len = children.length;
         for (var i = 0; i < len; i++) {
-            element.appendChild(build(children[i]));
+            element.appendChild(create(children[i]));
         }
     }
 
     function processChild(element, child) {
-        element.appendChild(build(child));
+        element.appendChild(create(child));
     }
 
     function processText(element, text) {
@@ -134,8 +134,8 @@
         text: processText
     };
 
-    function build(config) {
-        var element = domApiInterface.createElement(TAG in config ? config.tag : DIV);
+    function create(config) {
+        var element = domApi.createElement(TAG in config ? config.tag : DIV);
         for (var prop in config) {
             if (prop in processorFunctions)
                 processorFunctions[prop](element, config[prop]);
@@ -150,11 +150,11 @@
         return element;
     }
 
-    function buildFragment(configs) {
-        var fragment = domApiInterface.createDocumentFragment();
+    function createFragment(configs) {
+        var fragment = domApi.createDocumentFragment();
         var len = configs.length;
         for (var i = 0; i < len; i++) {
-            fragment.appendChild(build(configs[i]));
+            fragment.appendChild(create(configs[i]));
         }
         return fragment;
     }
@@ -174,7 +174,7 @@
     }
 
     function fragmentFrom(nodes) {
-        var fragment = domApiInterface.createDocumentFragment();
+        var fragment = domApi.createDocumentFragment();
         var len = nodes.length;
         for (var i = 0; i < len; i++) {
             fragment.appendChild(nodes[i]);
@@ -182,17 +182,24 @@
         return fragment;
     }
 
-    Object.defineProperty(globalScope, libraryName, {
-        writable: false,
-        configurable: false,
-        enumerable: false,
-        value: Object.freeze({
-            build: build,
-            buildFragment: buildFragment,
-            defineProcessor: defineProcessor,
-            fragmentFrom: fragmentFrom,
-            removeChildren: removeChildren
-        })
+    function declareInterface(name, publics) {
+        Object.defineProperty(globalScope, name, {
+            writable: false,
+            configurable: false,
+            enumerable: false,
+            value: Object.freeze(publics)
+        });
+    }
+
+    declareInterface('Elements', {
+        create: create,
+        defineProcessor: defineProcessor,
+        removeChildren: removeChildren
     });
 
-})(window, document, 'Elements');
+    declareInterface('Fragments', {
+        create: createFragment,
+        from: fragmentFrom
+    });
+
+})(window, document);

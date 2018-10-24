@@ -5,30 +5,30 @@
         OBJECT: '<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object"><dfn>Object</dfn></a>',
         PROTOTYPE: '<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/prototype">prototype</a>',
         WEB_COMPONENTS: '<a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components">Web Components</a>',
-        AFTER_NODE: '<a href="#eyJ0ZW1wbGF0ZSI6ImFydGljbGUiLCJwYXJhbXMiOnsia2V5IjoiMDowIn19">afterNode</a>',
-        APPEND_TO: '<a href="#eyJ0ZW1wbGF0ZSI6ImFydGljbGUiLCJwYXJhbXMiOnsia2V5IjoiMDoxIn19">appendTo</a>',
-        ATTRIBUTES: '<a href="#eyJ0ZW1wbGF0ZSI6ImFydGljbGUiLCJwYXJhbXMiOnsia2V5IjoiMDoyIn19">attributes</a>',
-        ATTS: '<a href="#eyJ0ZW1wbGF0ZSI6ImFydGljbGUiLCJwYXJhbXMiOnsia2V5IjoiMDozIn19">atts</a>',
-        BEFORE_NODE: '<a href="#eyJ0ZW1wbGF0ZSI6ImFydGljbGUiLCJwYXJhbXMiOnsia2V5IjoiMDo0In19">beforeNode</a>',
-        CHILD: '<a href="#eyJ0ZW1wbGF0ZSI6ImFydGljbGUiLCJwYXJhbXMiOnsia2V5IjoiMDo1In19">child</a>',
-        CHILDREN: '<a href="#eyJ0ZW1wbGF0ZSI6ImFydGljbGUiLCJwYXJhbXMiOnsia2V5IjoiMDo2In19">children</a>',
-        CLASS: '<a href="#eyJ0ZW1wbGF0ZSI6ImFydGljbGUiLCJwYXJhbXMiOnsia2V5IjoiMDo3In19">class</a>',
-        HTML: '<a href="#eyJ0ZW1wbGF0ZSI6ImFydGljbGUiLCJwYXJhbXMiOnsia2V5IjoiMDo4In19">html</a>',
-        ID: '<a href="#eyJ0ZW1wbGF0ZSI6ImFydGljbGUiLCJwYXJhbXMiOnsia2V5IjoiMDo5In19">id</a>',
-        LISTENERS: '<a href="#eyJ0ZW1wbGF0ZSI6ImFydGljbGUiLCJwYXJhbXMiOnsia2V5IjoiMDoxMCJ9fQ==">listeners</a>',
-        NODE_: '<a href="#eyJ0ZW1wbGF0ZSI6ImFydGljbGUiLCJwYXJhbXMiOnsia2V5IjoiMDoxMSJ9fQ==">node</a>',
-        NODES: '<a href="#eyJ0ZW1wbGF0ZSI6ImFydGljbGUiLCJwYXJhbXMiOnsia2V5IjoiMDoxMiJ9fQ==">nodes</a>',
-        ON: '<a href="#eyJ0ZW1wbGF0ZSI6ImFydGljbGUiLCJwYXJhbXMiOnsia2V5IjoiMDoxMyJ9fQ==">on</a>',
-        PREPEND_TO: '<a href="#eyJ0ZW1wbGF0ZSI6ImFydGljbGUiLCJwYXJhbXMiOnsia2V5IjoiMDoxNCJ9fQ==">prependTo</a>',
-        REPLACE_NODE: '<a href="#eyJ0ZW1wbGF0ZSI6ImFydGljbGUiLCJwYXJhbXMiOnsia2V5IjoiMDoxNSJ9fQ==">replaceNode</a>',
-        SET: '<a href="#eyJ0ZW1wbGF0ZSI6ImFydGljbGUiLCJwYXJhbXMiOnsia2V5IjoiMDoxNiJ9fQ==">set</a>',
-        STYLE: '<a href="#eyJ0ZW1wbGF0ZSI6ImFydGljbGUiLCJwYXJhbXMiOnsia2V5IjoiMDoxNyJ9fQ==">style</a>',
-        TEXT: '<a href="#eyJ0ZW1wbGF0ZSI6ImFydGljbGUiLCJwYXJhbXMiOnsia2V5IjoiMDoxOCJ9fQ==">text</a>',
+        AFTER_NODE: '<a href="#eyJ0ZW1wbGF0ZSI6ImFydGljbGUiLCJwYXJhbXMiOnsia2V5IjoiMTowOjAifX0=">afterNode</a>',
+        APPEND_TO: '<a href="#eyJ0ZW1wbGF0ZSI6ImFydGljbGUiLCJwYXJhbXMiOnsia2V5IjoiMTowOjEifX0=">appendTo</a>',
+        ATTRIBUTES: '<a href="#eyJ0ZW1wbGF0ZSI6ImFydGljbGUiLCJwYXJhbXMiOnsia2V5IjoiMTowOjIifX0=">attributes</a>',
+        ATTS: '<a href="#eyJ0ZW1wbGF0ZSI6ImFydGljbGUiLCJwYXJhbXMiOnsia2V5IjoiMTowOjMifX0=">atts</a>',
+        BEFORE_NODE: '<a href="#eyJ0ZW1wbGF0ZSI6ImFydGljbGUiLCJwYXJhbXMiOnsia2V5IjoiMTowOjQifX0=">beforeNode</a>',
+        CHILD: '<a href="#eyJ0ZW1wbGF0ZSI6ImFydGljbGUiLCJwYXJhbXMiOnsia2V5IjoiMTowOjUifX0=">child</a>',
+        CHILDREN: '<a href="#eyJ0ZW1wbGF0ZSI6ImFydGljbGUiLCJwYXJhbXMiOnsia2V5IjoiMTowOjYifX0=">children</a>',
+        CLASS: '<a href="#eyJ0ZW1wbGF0ZSI6ImFydGljbGUiLCJwYXJhbXMiOnsia2V5IjoiMTowOjcifX0=">class</a>',
+        HTML: '<a href="#eyJ0ZW1wbGF0ZSI6ImFydGljbGUiLCJwYXJhbXMiOnsia2V5IjoiMTowOjgifX0=">html</a>',
+        ID: '<a href="#eyJ0ZW1wbGF0ZSI6ImFydGljbGUiLCJwYXJhbXMiOnsia2V5IjoiMTowOjkifX0=">id</a>',
+        LISTENERS: '<a href="#eyJ0ZW1wbGF0ZSI6ImFydGljbGUiLCJwYXJhbXMiOnsia2V5IjoiMTowOjEwIn19">listeners</a>',
+        NODE_: '<a href="#eyJ0ZW1wbGF0ZSI6ImFydGljbGUiLCJwYXJhbXMiOnsia2V5IjoiMTowOjExIn19">node</a>',
+        NODES: '<a href="#eyJ0ZW1wbGF0ZSI6ImFydGljbGUiLCJwYXJhbXMiOnsia2V5IjoiMTowOjEyIn19">nodes</a>',
+        ON: '<a href="#eyJ0ZW1wbGF0ZSI6ImFydGljbGUiLCJwYXJhbXMiOnsia2V5IjoiMTowOjEzIn19">on</a>',
+        PREPEND_TO: '<a href="#eyJ0ZW1wbGF0ZSI6ImFydGljbGUiLCJwYXJhbXMiOnsia2V5IjoiMTowOjE0In19">prependTo</a>',
+        REPLACE_NODE: '<a href="#eyJ0ZW1wbGF0ZSI6ImFydGljbGUiLCJwYXJhbXMiOnsia2V5IjoiMTowOjE1In19">replaceNode</a>',
+        SET: '<a href="#eyJ0ZW1wbGF0ZSI6ImFydGljbGUiLCJwYXJhbXMiOnsia2V5IjoiMTowOjE2In19">set</a>',
+        STYLE: '<a href="#eyJ0ZW1wbGF0ZSI6ImFydGljbGUiLCJwYXJhbXMiOnsia2V5IjoiMTowOjE3In19">style</a>',
+        TEXT: '<a href="#eyJ0ZW1wbGF0ZSI6ImFydGljbGUiLCJwYXJhbXMiOnsia2V5IjoiMTowOjE4In19">text</a>',
         DIV: '<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div"><dfn>&#60;div&#62;</dfn></a>',
         DOCUMENT_FRAGMENT: '<a href="https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment"><dfn>DocumentFragment</dfn></a>',
         NODE: '<a href="https://developer.mozilla.org/en-US/docs/Web/API/Node"><dfn>Node</dfn></a>',
-        ELEMENTS_BUILD: '<a href="#eyJ0ZW1wbGF0ZSI6ImFydGljbGUiLCJwYXJhbXMiOnsia2V5IjoiMCJ9fQ=="><dfn>Elements.build()</dfn></a>',
-        ELEMENTS_BUILD_FRAGMENT: '<a href="#eyJ0ZW1wbGF0ZSI6ImFydGljbGUiLCJwYXJhbXMiOnsia2V5IjoiMSJ9fQ=="><dfn>Elements.buildFragment()</dfn></a>',
+        ELEMENTS_CREATE: '<a href="#eyJ0ZW1wbGF0ZSI6ImFydGljbGUiLCJwYXJhbXMiOnsia2V5IjoiMTowIn19"><dfn>Elements.create()</dfn></a>',
+        FRAGMENTS_CREATE: '<a href="#eyJ0ZW1wbGF0ZSI6ImFydGljbGUiLCJwYXJhbXMiOnsia2V5IjoiMTozIn19"><dfn>Fragments.create()</dfn></a>',
         ARRAY: '<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><dfn>Array</dfn></a>',
         BODY: '<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/body"><dfn>&#60;body&#62;</dfn></a>',
         STRING: '<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String"><dfn>String</dfn></a>',
@@ -39,82 +39,97 @@
 
     Articles.declare([
         {
-            title: 'Elements.build()',
-            src: './js/articles/ElementsBuild.js',
+            title: 'Installation'
+        },
+        {
+            title: 'Reference',
+            src: './js/articles/Reference.js',
             children: [
                 {
-                    title: 'afterNode'
+                    title: 'Elements.create()',
+                    src: './js/articles/ElementsCreate.js',
+                    children: [
+                        {
+                            title: 'afterNode'
+                        },
+                        {
+                            title: 'appendTo'
+                        },
+                        {
+                            title: 'attributes'
+                        },
+                        {
+                            title: 'atts'
+                        },
+                        {
+                            title: 'beforeNode'
+                        },
+                        {
+                            title: 'child'
+                        },
+                        {
+                            title: 'children'
+                        },
+                        {
+                            title: 'class'
+                        },
+                        {
+                            title: 'html'
+                        },
+                        {
+                            title: 'id'
+                        },
+                        {
+                            title: 'listeners'
+                        },
+                        {
+                            title: 'node'
+                        },
+                        {
+                            title: 'nodes'
+                        },
+                        {
+                            title: 'on'
+                        },
+                        {
+                            title: 'prependTo'
+                        },
+                        {
+                            title: 'replaceNode'
+                        },
+                        {
+                            title: 'set'
+                        },
+                        {
+                            title: 'style'
+                        },
+                        {
+                            title: 'text'
+                        }
+                    ]
                 },
                 {
-                    title: 'appendTo'
+                    title: 'Elements.defineProcessor()',
+                    src: './js/articles/ElementsDefineProcessor.js'
                 },
                 {
-                    title: 'attributes'
+                    title: 'Elements.removeChildren()',
+                    src: './js/articles/ElementsRemoveChildren.js'
                 },
                 {
-                    title: 'atts'
+                    title: 'Fragments.create()',
+                    src: './js/articles/FragmentsCreate.js'
                 },
                 {
-                    title: 'beforeNode'
-                },
-                {
-                    title: 'child'
-                },
-                {
-                    title: 'children'
-                },
-                {
-                    title: 'class'
-                },
-                {
-                    title: 'html'
-                },
-                {
-                    title: 'id'
-                },
-                {
-                    title: 'listeners'
-                },
-                {
-                    title: 'node'
-                },
-                {
-                    title: 'nodes'
-                },
-                {
-                    title: 'on'
-                },
-                {
-                    title: 'prependTo'
-                },
-                {
-                    title: 'replaceNode'
-                },
-                {
-                    title: 'set'
-                },
-                {
-                    title: 'style'
-                },
-                {
-                    title: 'text'
+                    title: 'Fragments.from()',
+                    src: './js/articles/FragmentsFrom.js'
                 }
             ]
         },
         {
-            title: 'Elements.buildFragment()',
-            src: './js/articles/ElementsBuildFragment.js'
-        },
-        {
-            title: 'Elements.defineProcessor()',
-            src: './js/articles/ElementsDefineProcessor.js'
-        },
-        {
-            title: 'Elements.fragmentFrom()'
-        },
-        {
-            title: 'Elements.removeChildren()',
-            src: './js/articles/ElementsRemoveAllChildren.js'
+            title: 'Sandbox',
+            id: 'sandbox-article',
+            src: './js/articles/Sandbox.js'
         }
     ]);
 

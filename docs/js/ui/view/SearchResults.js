@@ -1,9 +1,9 @@
 Templates.withoutKey('search-results', ({ query }, register, controller) => {
-    const list = Elements.build({ tag: 'ul' });
-    const node = Elements.build({
+    const list = Elements.create({ tag: 'ul' });
+    const node = Elements.create({
         id: 'search-results',
         nodes: [
-            Elements.build({ tag: 'h2', text: `Results for /${query}/gi` }),
+            Elements.create({ tag: 'h2', text: `Results for /${query}/gi` }),
             list
         ]
     });
