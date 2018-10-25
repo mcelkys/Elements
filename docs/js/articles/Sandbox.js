@@ -1,86 +1,85 @@
 Articles.define('Sandbox', Macro => {
-    const output = Elements.create({ tag: 'iframe', class: 'flexing' });
-    var script, style, lib, scriptTimeoutId, styleTimeoutId;
-
+    var output = Elements.create({ tag: 'iframe', class: 'flexing' });
+    var lib, timeoutId;
     const styleEditor = Elements.create({
         class: 'flexing padded editor',
         contentEditable: 'true',
-        placeholder: 'Enter your CSS here...',
-        on: {
-            keyup: event => {
-                clearTimeout(styleTimeoutId);
-                styleTimeoutId = setTimeout(injectStyle, 1000);
-            }
-        }
+        text: '/* Declare your CSS here... */',
+        on: { keyup: onKeyUp }
     });
     const scriptEditor = Elements.create({
         class: 'flexing padded editor',
         contentEditable: 'true',
-        placeholder: 'Use JavaScript and Elements libary here...',
-        on: {
-            keyup: event => {
-                clearTimeout(scriptTimeoutId);
-                scriptTimeoutId = setTimeout(injectScript, 1000);
-            }
-        }
+        text: '/* Use JavaScript and Elements libary here... */',
+        on: { keyup: onKeyUp }
     });
+    const horizontalResizer = Elements.create({
+        class: 'resizer',
+        style: { cursor: 'row-resize' }
+    });
+    const inputContainer = Elements.create({
+        class: 'flexed column',
+        style: { flex: '1' },
+        nodes: [ styleEditor, horizontalResizer, scriptEditor ]
+    });
+    const outputContainer = Elements.create({
+        class: 'flexed',
+        style: { flex: '1' },
+        node: output
+    });
+     const verticalResizer = Elements.create({
+         class: 'resizer',
+         style: { cursor: 'col-resize' },
+         // on: {
+         //     mousedown: e => {
+         //         const unitWidth = (verticalResizer.parentElement.clientWidth - verticalResizer.clientWidth) / 2;
+         //         const unitX = verticalResizer.parentElement.offsetLeft + unitWidth;
+         //         debugger;
+         //         const handler = event => {
+         //             const stepX = event.movementX;
+         //             inputContainer.style.setProperty('flex', ((inputContainer.clientWidth - stepX) / unitWidth).toString());
+         //             outputContainer.style.setProperty('flex', ((outputContainer.clientWidth - stepX) / unitWidth).toString());
+         //         };
+         //         verticalResizer.addEventListener('mousemove', handler, { passive: true });
+         //         verticalResizer.addEventListener('mouseup', () => {
+         //             verticalResizer.removeEventListener('mousemove', handler);
+         //         }, { passive: true, once: true });
+         //     }
+         // }
+     });
 
     fetch('elements.min.js').then(r => r.text()).then(code => {
-        lib = Elements.create({ tag: 'script', text: code });
+        lib = code;
     });
 
-    function head() {
-        return output.contentDocument.head;
-    }
-    function body() {
-        return output.contentDocument.body;
+    function onKeyUp(event) {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(render, 1000);
+        output.classList.add('update-pending');
     }
 
-    function onError(event) {
-        Elements.removeChildren(body());
-        Elements.create({
-            tag: 'pre',
-            style: { margin: '10px' },
-            child: { tag: 'samp', text: event.error.stack },
-            appendTo: body()
+    function render() {
+        output = Elements.create({
+            tag: 'iframe',
+            class: 'flexing',
+            replaceNode: output
         });
+        const fragment = Fragments.create([
+            { tag: 'style', text: styleEditor.textContent },
+            { tag: 'script', text: lib },
+            { tag: 'script', text: scriptEditor.textContent }
+        ]);
+        output.contentWindow.addEventListener('error', event => {
+            Elements.removeChildren(output.contentDocument.body);
+            Elements.create({
+                tag: 'pre',
+                style: { margin: '10px' },
+                child: { tag: 'samp', text: event.error.stack },
+                appendTo: output.contentDocument.body
+            });
+        }, { passive: true });
+        output.contentDocument.head.appendChild(fragment);
     }
 
-    function injectStyle() {
-        const base = (style && head().contains(style)) ? { replaceNode: style } : { appendTo: head() };
-        style = Elements.create(Object.assign(base, { tag: 'style', text: styleEditor.textContent }));
-    }
-    function injectScript() {
-        const base = (script && head().contains(script)) ? { replaceNode: script } : { appendTo: head() };
-        if (lib && !head().contains(lib)) {
-            if (lib.parentNode) lib.parentNode.removeChild(lib);
-            head().appendChild(lib);
-        }
-        output.contentWindow.addEventListener('error', onError, { passive: true });
-        Elements.removeChildren(body());
-        script = Elements.create(Object.assign(base, { tag: 'script', text: scriptEditor.textContent }));
-    }
-
-    return {
-        class: 'flexing flexed',
-        children: [
-            {
-                class: 'flexing flexed padded column',
-                children: [
-                    {
-                        class: 'flexing flexed column',
-                        nodes: [ Elements.create({ tag: 'h3', text: 'CSS' }), styleEditor ]
-                    },
-                    {
-                        class: 'flexing flexed column',
-                        nodes: [ Elements.create({ tag: 'h3', text: 'JavaScript' }), scriptEditor ]
-                    }
-                ]
-            },
-            {
-                class: 'flexing flexed padded column',
-                nodes: [ Elements.create({ tag: 'h3', text: 'Result' }), output ]
-            }
-        ]
-    };
+    return { class: 'flexing flexed', nodes: [ inputContainer, verticalResizer, outputContainer ] };
 });

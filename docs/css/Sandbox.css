@@ -23,12 +23,47 @@
 }
 
 #sandbox-article iframe {
-    border: 1px solid grey;
+    border: none;
+    opacity: 0.4;
+    box-shadow: 0px 0px 7px rgba(0,0,0,0.25);
+    animation-name: sandbox-ouput-in;
+    animation-duration: 400ms;
+    animation-fill-mode: forwards;
+}
+
+#sandbox-article iframe.update-pending {
+    animation-name: sandbox-ouput-out;
+    animation-duration: 400ms;
+    animation-fill-mode: forwards;
+}
+
+#sandbox-article .resizer {
+    flex-basis: 10px;
 }
 
 #sandbox-article .editor {
     font-family: monospace;
+    white-space: pre;
     border-radius: 5px;
-    border: 1px solid lightgrey;
+    background-color: #f3f3f3;
     outline: none;
+    overflow: auto;
+}
+
+@keyframes sandbox-ouput-in {
+    from {
+        opacity: 0.4;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes sandbox-ouput-out {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0.4;
+    }
 }
