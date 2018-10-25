@@ -666,6 +666,7 @@ Templates.controllerFor('article', instances => {
             if (instance && data) {
                 Elements.removeChildren(instance);
                 Elements.create({ tag: 'h2', text: data.title, appendTo: instance });
+                if (data.id) instance.id = data.id;
                 if (data.render) {
                     if (data.render instanceof Array) {
                         const fragment = Fragments.create(data.render);

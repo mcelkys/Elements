@@ -1,3 +1,4 @@
+
 * {
     box-sizing: border-box;
 }
@@ -415,4 +416,36 @@ article samp {
         padding: 10px 15px 10px 15px;
     }
 
+}
+#sandbox-article {
+    flex-basis: 100%;
+}
+
+#sandbox-article h3 {
+    font-size: 1em;
+}
+
+#sandbox-article, #sandbox-article .flexed {
+    display: flex;
+}
+
+#sandbox-article, #sandbox-article .column {
+    flex-direction: column;
+}
+
+#sandbox-article .flexing {
+    flex: 1;
+}
+
+#sandbox-article .padded {
+    padding: 10px;
+}
+
+#sandbox-article iframe {
+    border: 1px solid grey;
+}
+
+#sandbox-article textarea {
+    border-radius: 5px;
+    outline: none;
 }
