@@ -39,7 +39,12 @@
 
 #sandbox-article .resizer {
     flex-basis: 10px;
+    transition: flex-basis 300ms;
 }
+
+/* #sandbox-article .resizer:hover {
+    flex-basis: 50px;
+} */
 
 #sandbox-article .editor {
     font-family: monospace;

@@ -19,33 +19,43 @@ Articles.define('Sandbox', Macro => {
     });
     const inputContainer = Elements.create({
         class: 'flexed column',
-        style: { flex: '1' },
+        style: { flex: '0.5' },
         nodes: [ styleEditor, horizontalResizer, scriptEditor ]
     });
     const outputContainer = Elements.create({
         class: 'flexed',
-        style: { flex: '1' },
+        style: { flex: '0.5' },
         node: output
     });
      const verticalResizer = Elements.create({
          class: 'resizer',
          style: { cursor: 'col-resize' },
-         // on: {
-         //     mousedown: e => {
-         //         const unitWidth = (verticalResizer.parentElement.clientWidth - verticalResizer.clientWidth) / 2;
-         //         const unitX = verticalResizer.parentElement.offsetLeft + unitWidth;
-         //         debugger;
-         //         const handler = event => {
-         //             const stepX = event.movementX;
-         //             inputContainer.style.setProperty('flex', ((inputContainer.clientWidth - stepX) / unitWidth).toString());
-         //             outputContainer.style.setProperty('flex', ((outputContainer.clientWidth - stepX) / unitWidth).toString());
-         //         };
-         //         verticalResizer.addEventListener('mousemove', handler, { passive: true });
-         //         verticalResizer.addEventListener('mouseup', () => {
-         //             verticalResizer.removeEventListener('mousemove', handler);
-         //         }, { passive: true, once: true });
-         //     }
-         // }
+         on: {
+             mousedown: e => {
+                 const wrapperWidth = verticalResizer.parentElement.clientWidth;
+                 const resizerMiddleX = verticalResizer.clientWidth / 2;
+                 var inputWidth = inputContainer.clientWidth;
+                 var outputWidth = outputContainer.clientWidth;
+                 const handler = event => {
+                     const stepX = event.offsetX - resizerMiddleX;
+                     inputWidth += stepX;
+                     outerWidth -= stepX;
+                     const leftFlex = inputWidth / wrapperWidth;
+                     const rightFlex = outputWidth / wrapperWidth;
+                     console.log(leftFlex, rightFlex);
+                     inputContainer.style.setProperty('flex', leftFlex.toString());
+                     outputContainer.style.setProperty('flex', rightFlex.toString());
+                 };
+                 const cleanup = () => {
+                     verticalResizer.removeEventListener('mousemove', handler);
+                     verticalResizer.removeEventListener('mouseup', cleanup);
+                     verticalResizer.removeEventListener('mouseleave', cleanup);
+                 };
+                 verticalResizer.addEventListener('mousemove', handler, { passive: true });
+                 verticalResizer.addEventListener('mouseup', cleanup, { passive: true });
+                 verticalResizer.addEventListener('mouseleave', cleanup, { passive: true });
+             }
+         }
      });
 
     fetch('elements.min.js').then(r => r.text()).then(code => {
