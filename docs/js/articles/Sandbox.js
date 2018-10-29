@@ -19,12 +19,12 @@ Articles.define('Sandbox', Macro => {
     });
     const inputContainer = Elements.create({
         class: 'flexed column',
-        style: { flex: '0.5' },
+        style: { flex: '1' },
         nodes: [ styleEditor, horizontalResizer, scriptEditor ]
     });
     const outputContainer = Elements.create({
         class: 'flexed',
-        style: { flex: '0.5' },
+        style: { flex: '1' },
         node: output
     });
      const verticalResizer = Elements.create({
@@ -32,28 +32,32 @@ Articles.define('Sandbox', Macro => {
          style: { cursor: 'col-resize' },
          on: {
              mousedown: e => {
-                 const wrapperWidth = verticalResizer.parentElement.clientWidth;
-                 const resizerMiddleX = verticalResizer.clientWidth / 2;
-                 var inputWidth = inputContainer.clientWidth;
-                 var outputWidth = outputContainer.clientWidth;
+                 const innerMeasure = 'clientWidth';
+                 const outterMeasure = 'offsetWidth';
+                 const offsetAxis = 'offsetX';
+                 const resizer = e.target;
+                 const container = resizer.parentElement;
+                 const previous = resizer.previousSibling;
+                 const next = resizer.nextSibling;
+                 const containerHalfDimention = container[innerMeasure] / 2;
+                 const resizerMiddleCoordinate = resizer[innerMeasure] / 2;
+                 var previousDimention = previous[outterMeasure];
+                 var nextDimention = next[outterMeasure];
                  const handler = event => {
-                     const stepX = event.offsetX - resizerMiddleX;
-                     inputWidth += stepX;
-                     outerWidth -= stepX;
-                     const leftFlex = inputWidth / wrapperWidth;
-                     const rightFlex = outputWidth / wrapperWidth;
-                     console.log(leftFlex, rightFlex);
-                     inputContainer.style.setProperty('flex', leftFlex.toString());
-                     outputContainer.style.setProperty('flex', rightFlex.toString());
+                     const stepDistance = (event[offsetAxis] - resizerMiddleCoordinate);
+                     previousDimention += stepDistance;
+                     nextDimention -= stepDistance;
+                     previous.style.setProperty('flex', (previousDimention / containerHalfDimention).toString());
+                     next.style.setProperty('flex', (nextDimention / containerHalfDimention).toString());
                  };
                  const cleanup = () => {
-                     verticalResizer.removeEventListener('mousemove', handler);
-                     verticalResizer.removeEventListener('mouseup', cleanup);
-                     verticalResizer.removeEventListener('mouseleave', cleanup);
+                     container.removeEventListener('mousemove', handler);
+                     container.removeEventListener('mouseup', cleanup);
+                     container.removeEventListener('mouseleave', cleanup);
                  };
-                 verticalResizer.addEventListener('mousemove', handler, { passive: true });
-                 verticalResizer.addEventListener('mouseup', cleanup, { passive: true });
-                 verticalResizer.addEventListener('mouseleave', cleanup, { passive: true });
+                 container.addEventListener('mousemove', handler, { passive: true });
+                 container.addEventListener('mouseup', cleanup, { passive: true });
+                 container.addEventListener('mouseleave', cleanup, { passive: true });
              }
          }
      });
