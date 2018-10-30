@@ -29,6 +29,8 @@
     animation-name: sandbox-ouput-in;
     animation-duration: 400ms;
     animation-fill-mode: forwards;
+    pointer-events: none;
+    min-width: 0px;
 }
 
 #sandbox-article iframe.update-pending {

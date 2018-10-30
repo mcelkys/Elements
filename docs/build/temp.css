@@ -448,6 +448,8 @@ article samp {
     animation-name: sandbox-ouput-in;
     animation-duration: 400ms;
     animation-fill-mode: forwards;
+    pointer-events: none;
+    min-width: 0px;
 }
 
 #sandbox-article iframe.update-pending {
@@ -458,7 +460,12 @@ article samp {
 
 #sandbox-article .resizer {
     flex-basis: 10px;
+    transition: flex-basis 300ms;
 }
+
+/* #sandbox-article .resizer:hover {
+    flex-basis: 50px;
+} */
 
 #sandbox-article .editor {
     font-family: monospace;

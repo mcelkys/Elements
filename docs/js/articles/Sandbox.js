@@ -15,16 +15,47 @@ Articles.define('Sandbox', Macro => {
     });
     const horizontalResizer = Elements.create({
         class: 'resizer',
-        style: { cursor: 'row-resize' }
+        style: { cursor: 'row-resize' },
+        on: {
+            mousedown: e => {
+                const resizer = e.target;
+                const { previousSibling, nextSibling, parentElement } = resizer;
+                const previousSiblingOriginHeight = previousSibling.offsetHeight;
+                const nextSiblingOriginHeight = nextSibling.offsetHeight;
+                const unitHeight = (previousSiblingOriginHeight + nextSiblingOriginHeight) / 2;
+                const originY = resizer.offsetHeight / 2 - e.offsetY + e.pageY;
+                var previousSiblingFlex = previousSiblingOriginHeight / unitHeight;
+                var nextSiblingFlex = nextSiblingOriginHeight / unitHeight;
+                var isMeasuring = true;
+                const handler = event => {
+                    const yDifference = originY - event.pageY;
+                    previousSiblingFlex = (previousSiblingOriginHeight - yDifference) / unitHeight;
+                    nextSiblingFlex = (nextSiblingOriginHeight + yDifference) / unitHeight;
+                };
+                const cleanup = () => {
+                    parentElement.removeEventListener('mousemove', handler);
+                    parentElement.removeEventListener('mouseup', cleanup);
+                    parentElement.removeEventListener('mouseleave', cleanup);
+                    isMeasuring = false;
+                };
+                const animateFlex = () => {
+                    previousSibling.style.setProperty('flex', previousSiblingFlex.toString());
+                    nextSibling.style.setProperty('flex', nextSiblingFlex.toString());
+                    if (isMeasuring) requestAnimationFrame(animateFlex);
+                };
+                parentElement.addEventListener('mousemove', handler, { passive: true });
+                parentElement.addEventListener('mouseup', cleanup, { passive: true });
+                parentElement.addEventListener('mouseleave', cleanup, { passive: true });
+                requestAnimationFrame(animateFlex);
+            }
+        }
     });
     const inputContainer = Elements.create({
-        class: 'flexed column',
-        style: { flex: '1' },
+        class: 'flexing flexed column',
         nodes: [ styleEditor, horizontalResizer, scriptEditor ]
     });
     const outputContainer = Elements.create({
-        class: 'flexed',
-        style: { flex: '1' },
+        class: 'flexing flexed',
         node: output
     });
      const verticalResizer = Elements.create({
@@ -32,32 +63,35 @@ Articles.define('Sandbox', Macro => {
          style: { cursor: 'col-resize' },
          on: {
              mousedown: e => {
-                 const innerMeasure = 'clientWidth';
-                 const outterMeasure = 'offsetWidth';
-                 const offsetAxis = 'offsetX';
                  const resizer = e.target;
-                 const container = resizer.parentElement;
-                 const previous = resizer.previousSibling;
-                 const next = resizer.nextSibling;
-                 const containerHalfDimention = container[innerMeasure] / 2;
-                 const resizerMiddleCoordinate = resizer[innerMeasure] / 2;
-                 var previousDimention = previous[outterMeasure];
-                 var nextDimention = next[outterMeasure];
+                 const { previousSibling, nextSibling, parentElement } = resizer;
+                 const previousSiblingOriginWidth = previousSibling.offsetWidth;
+                 const nextSiblingOriginWidth = nextSibling.offsetWidth;
+                 const unitWidth = (previousSiblingOriginWidth + nextSiblingOriginWidth) / 2;
+                 const originX = resizer.offsetWidth / 2 - e.offsetX + e.pageX;
+                 var previousSiblingFlex = previousSiblingOriginWidth / unitWidth;
+                 var nextSiblingFlex = nextSiblingOriginWidth / unitWidth;
+                 var isMeasuring = true;
                  const handler = event => {
-                     const stepDistance = (event[offsetAxis] - resizerMiddleCoordinate);
-                     previousDimention += stepDistance;
-                     nextDimention -= stepDistance;
-                     previous.style.setProperty('flex', (previousDimention / containerHalfDimention).toString());
-                     next.style.setProperty('flex', (nextDimention / containerHalfDimention).toString());
+                     const xDifference = originX - event.pageX;
+                     previousSiblingFlex = (previousSiblingOriginWidth - xDifference) / unitWidth;
+                     nextSiblingFlex = (nextSiblingOriginWidth + xDifference) / unitWidth;
                  };
                  const cleanup = () => {
-                     container.removeEventListener('mousemove', handler);
-                     container.removeEventListener('mouseup', cleanup);
-                     container.removeEventListener('mouseleave', cleanup);
+                     parentElement.removeEventListener('mousemove', handler);
+                     parentElement.removeEventListener('mouseup', cleanup);
+                     parentElement.removeEventListener('mouseleave', cleanup);
+                     isMeasuring = false;
                  };
-                 container.addEventListener('mousemove', handler, { passive: true });
-                 container.addEventListener('mouseup', cleanup, { passive: true });
-                 container.addEventListener('mouseleave', cleanup, { passive: true });
+                 const animateFlex = () => {
+                     previousSibling.style.setProperty('flex', previousSiblingFlex.toString());
+                     nextSibling.style.setProperty('flex', nextSiblingFlex.toString());
+                     if (isMeasuring) requestAnimationFrame(animateFlex);
+                 };
+                 parentElement.addEventListener('mousemove', handler, { passive: true });
+                 parentElement.addEventListener('mouseup', cleanup, { passive: true });
+                 parentElement.addEventListener('mouseleave', cleanup, { passive: true });
+                 requestAnimationFrame(animateFlex);
              }
          }
      });
