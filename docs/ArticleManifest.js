@@ -34,12 +34,14 @@
         STRING: '<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String"><dfn>String</dfn></a>',
         FUNCTION: '<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function"><dfn>Function</dfn></a>',
         UNDEFINED: '<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined"><dfn>undefined</dfn></a>',
-        BUTTON: '<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button"><dfn>&#60;button&#62;</dfn></a>'
+        BUTTON: '<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button"><dfn>&#60;button&#62;</dfn></a>',
+        SCRIPT: '<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script"><dfn>&#60;script&#62;</dfn></a>'
     });
 
     Articles.declare([
         {
-            title: 'Installation'
+            title: 'Installation',
+            src: './js/articles/Installation.js'
         },
         {
             title: 'Reference',
