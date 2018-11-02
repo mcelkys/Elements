@@ -52,7 +52,8 @@
                     src: './js/articles/ElementsCreate.js',
                     children: [
                         {
-                            title: 'afterNode'
+                            title: 'afterNode',
+                            src: './js/articles/AfterNode.js',
                         },
                         {
                             title: 'appendTo'
