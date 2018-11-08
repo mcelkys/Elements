@@ -1,26 +1,20 @@
-Articles.define('afterNode', Macro => [
+Articles.define('appendTo', Macro => [
     {
         tag: 'p',
-        html: `Assures that the resulting ${Macro.HTML_ELEMENT} is inserted into
-        the ${Macro.NODE} hierarchy as a <i>child node</i> of the <i>parent node</i>
-        of the <i>reference node</i>, appearing immediately after the <i>reference
-        node</i>.`
+        html: `Adds the resulting ${Macro.HTML_ELEMENT} to the reference ${Macro.NODE}
+        as the last child node.`
     },
     {
         tag: 'pre',
         child: {
             tag: 'code',
             text:
-`<parent>
+`<reference>
     ...
-    <reference></reference>
-
+    <other></other>
+    <other></other>
     <!-- Your HTMLElement will be added here -->
-
-    <other></other>
-    <other></other>
-    ...
-</parent>`
+</reference>`
         }
     },
     {
@@ -30,7 +24,7 @@ Articles.define('afterNode', Macro => [
             {
                 tag: 'p',
                 html: `Reference ${Macro.NODE} instance. The resulting ${Macro.HTML_ELEMENT}
-                will be appear immediately after this ${Macro.NODE}.`
+                will be appear in this ${Macro.NODE}, at the end of the child list.`
             }
         ]
     },
@@ -42,7 +36,7 @@ Articles.define('afterNode', Macro => [
                 tag: 'p',
                 html: `The following example creates a ${Macro.UL} list within the
                 ${Macro.BODY} with three ${Macro.LI} instances: red, green and blue. It
-                then create another item, containing text "YELLOW!", after the "green" item.`
+                then create another item, containing text "YELLOW!" at the end of the list.`
             },
             {
                 class: 'responsive',
@@ -55,20 +49,19 @@ Articles.define('afterNode', Macro => [
                                 tag: 'code',
                                 text:
 `const colors = ['red', 'green', 'blue'];
-const listItems = colors.map(color => Elements.create({
-    tag: 'li',
-    text: color
-}));
-Elements.create({
+const list = Elements.create({
     tag: 'ul',
-    nodes: listItems,
+    children: colors.map(color => ({
+        tag: 'li',
+        text: color
+    })),
     appendTo: document.body
 });
 
 Elements.create({
     tag: 'li',
     text: 'YELLOW!',
-    afterNode: listItems[1]
+    appendTo: list
 });`
                             }
                         ]
@@ -84,8 +77,8 @@ Elements.create({
     <ul>
         <li>red</li>
         <li>green</li>
-        <li>YELLOW!</li>
         <li>blue</li>
+        <li>YELLOW!</li>
     </ul>
 </body>`
                             }

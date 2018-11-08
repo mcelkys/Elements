@@ -35,7 +35,10 @@
         FUNCTION: '<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function"><dfn>Function</dfn></a>',
         UNDEFINED: '<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined"><dfn>undefined</dfn></a>',
         BUTTON: '<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button"><dfn>&#60;button&#62;</dfn></a>',
-        SCRIPT: '<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script"><dfn>&#60;script&#62;</dfn></a>'
+        SCRIPT: '<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script"><dfn>&#60;script&#62;</dfn></a>',
+        UL: '<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ul"><dfn>&#60;ul&#62;</dfn></a>',
+        LI: '<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ul"><dfn>&#60;li&#62;</dfn></a>',
+        INPUT: '<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input"><dfn>&#60;input&#62;</dfn></a>'
     });
 
     Articles.declare([
@@ -53,16 +56,19 @@
                     children: [
                         {
                             title: 'afterNode',
-                            src: './js/articles/AfterNode.js',
+                            src: './js/articles/AfterNode.js'
                         },
                         {
-                            title: 'appendTo'
+                            title: 'appendTo',
+                            src: './js/articles/AppendTo.js'
                         },
                         {
-                            title: 'attributes'
+                            title: 'attributes',
+                            src: './js/articles/Attributes.js'
                         },
                         {
-                            title: 'atts'
+                            title: 'atts',
+                            src: './js/articles/Atts.js'
                         },
                         {
                             title: 'beforeNode'
