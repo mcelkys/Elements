@@ -71,10 +71,12 @@
                             src: './js/articles/Atts.js'
                         },
                         {
-                            title: 'beforeNode'
+                            title: 'beforeNode',
+                            src: './js/articles/BeforeNode.js'
                         },
                         {
-                            title: 'child'
+                            title: 'child',
+                            src: './js/articles/Child.js'
                         },
                         {
                             title: 'children'
