@@ -42,7 +42,11 @@ Articles.define('attributes', Macro => [
                 option, so they are all assigned as basic attributes. Note that in this case, the library
                 does not need to go through the process of elimination for every attribute, hence the code
                 executes a tiny bit faster. This optimization can be made because the second case
-                does a better job of conveying the intention to assign attributes.`
+                does a better job of conveying the intention to assign attributes. Also note that
+                the <b>attributes</b> option allows you to sidestep pre-defined option processors
+                and assigned attributes with the same names as existing options. In the second case, this example assigns
+                the <i>id</i> as a basic attribute without invoking the pre-defined ${Macro.ID}
+                option processor function, whereas in the first case, said function is invoked.`
             },
             {
                 class: 'responsive',
