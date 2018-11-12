@@ -38,7 +38,8 @@
         SCRIPT: '<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script"><dfn>&#60;script&#62;</dfn></a>',
         UL: '<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ul"><dfn>&#60;ul&#62;</dfn></a>',
         LI: '<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ul"><dfn>&#60;li&#62;</dfn></a>',
-        INPUT: '<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input"><dfn>&#60;input&#62;</dfn></a>'
+        INPUT: '<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input"><dfn>&#60;input&#62;</dfn></a>',
+        FORIN: '<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in"><dfn>for...in</dfn></a>'
     });
 
     Articles.declare([
@@ -79,7 +80,8 @@
                             src: './js/articles/Child.js'
                         },
                         {
-                            title: 'children'
+                            title: 'children',
+                            src: './js/articles/Children.js'
                         },
                         {
                             title: 'class'

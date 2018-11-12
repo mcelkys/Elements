@@ -334,7 +334,7 @@ article section {
 }
 
 article dfn {
-    background-color: #ececec;
+    background-color: rgba(0, 0, 0, 0.085);
     font-size: 0.875em;
     border-radius: 2px;
     display: inline-block;
@@ -388,6 +388,12 @@ article samp {
     border-radius: 5px;
     background-color: #353535;
     color: white;
+}
+
+article .warning {
+    background-color: #ffe8d5;
+    padding: 15px 30px 15px 30px;
+    border-radius: 5px;
 }
 
 @media (max-width: 1024px) {
