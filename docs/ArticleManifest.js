@@ -39,7 +39,8 @@
         UL: '<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ul"><dfn>&#60;ul&#62;</dfn></a>',
         LI: '<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ul"><dfn>&#60;li&#62;</dfn></a>',
         INPUT: '<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input"><dfn>&#60;input&#62;</dfn></a>',
-        FORIN: '<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in"><dfn>for...in</dfn></a>'
+        FORIN: '<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in"><dfn>for...in</dfn></a>',
+        MAP: '<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map"><dfn>Map</dfn></a>'
     });
 
     Articles.declare([
@@ -84,13 +85,16 @@
                             src: './js/articles/Children.js'
                         },
                         {
-                            title: 'class'
+                            title: 'class',
+                            src: './js/articles/Class.js'
                         },
                         {
-                            title: 'html'
+                            title: 'html',
+                            src: './js/articles/Html.js'
                         },
                         {
-                            title: 'id'
+                            title: 'id',
+                            src: './js/articles/Id.js'
                         },
                         {
                             title: 'listeners'

@@ -1,12 +1,12 @@
-Articles.define('children', Macro => [
+Articles.define('html', Macro => [
     {
         tag: 'p',
-        html: `Creates child ${Macro.HTML_ELEMENT} instances and appends them to
-        the resulting ${Macro.HTML_ELEMENT} in the order they are defined. The
-        <b>children</b> option is designed for cases, where mutliple children
-        need to be created from options ${Macro.OBJECT} instances. In case you
-        only require to have a single child, it is better to use the ${Macro.CHILD}
-        option.`
+        html: `Processes the value as inner HTML of the resulting ${Macro.HTML_ELEMENT}.
+        This option can be used to embed large amounts of HTML content into an
+        ${Macro.HTML_ELEMENT}, however it is designed to act an enhanced version
+        of the ${Macro.TEXT} option, where parts of the text content could be wrapped
+        in HTML for styling purposes. That being said, it is more efficient
+        to use ${Macro.TEXT} when the content does not need to contain any HTML markup.`
     },
     {
         tag: 'section',
@@ -14,8 +14,8 @@ Articles.define('children', Macro => [
         children: [
             {
                 tag: 'p',
-                html: `Note: ${Macro.CHILD}, <b>children</b>, ${Macro.NODES}, ${Macro.NODE_},
-                ${Macro.TEXT} and ${Macro.HTML} options are designed to be used separately
+                html: `Note: ${Macro.CHILD}, ${Macro.CHILDREN}, ${Macro.NODES}, ${Macro.NODE_},
+                ${Macro.TEXT} and <b>html</b> options are designed to be used separately
                 because they all provide different ways of creating nested content. Using
                 a combination of the above options may produce unexpected results. The
                 order in which options get evaluated is not predictable, as a
@@ -38,8 +38,7 @@ Articles.define('children', Macro => [
             { tag: 'h3', text: 'Value' },
             {
                 tag: 'p',
-                html: `An ${Macro.ARRAY} of valid <b>options</b> ${Macro.OBJECT} instances
-                that could be used with ${Macro.FRAGMENTS_CREATE} function on its own.`
+                html: `A ${Macro.STRING} containing HTML content.`
             }
         ]
     },
@@ -49,8 +48,7 @@ Articles.define('children', Macro => [
             { tag: 'h3', text: 'Example' },
             {
                 tag: 'p',
-                html: `The following example creates a ${Macro.UL} list with three
-                nested child ${Macro.LI} instances.`
+                html: `The following example creates a paragraph with HTML content.`
             },
             {
                 class: 'responsive',
@@ -63,12 +61,10 @@ Articles.define('children', Macro => [
                                 tag: 'code',
                                 text:
 `Elements.create({
-    tag: 'ul',
-    children: [
-        { tag: 'li', text: 'Red' },
-        { tag: 'li', text: 'Green' },
-        { tag: 'li', text: 'Blue' }
-    ]
+    tag: 'p',
+    html: \`<b>JavaScript</b> (JS) is a lightweight
+    interpreted or <a href="/jit">JIT-compiled</a>
+    programming language with first-class functions.\`
 });`
                             }
                         ]
@@ -80,11 +76,11 @@ Articles.define('children', Macro => [
                             {
                                 tag: 'code',
                                 text:
-`<ul>
-    <li>Red</li>
-    <li>Green</li>
-    <li>Blue</li>
-</ul>`
+`<p>
+    <b>JavaScript</b> (JS) is a lightweight
+    interpreted or <a href="/jit">JIT-compiled</a>
+    programming language with first-class functions.
+</p>`
                             }
                         ]
                     }

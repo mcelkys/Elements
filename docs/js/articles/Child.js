@@ -14,17 +14,14 @@ Articles.define('child', Macro => [
         children: [
             {
                 tag: 'p',
-                html: `While technically you can use <b>child</b> in combination
-                with ${Macro.CHILDREN}, ${Macro.NODE_} and ${Macro.NODES}, these
-                options are designed to be used separately because they all provide
-                different ways of adding child nodes. Using a combination of the above
-                option will produce <i>correct</i> results (i.e. all desired child
-                nodes will be appended), however the results might not always be exactly
-                as expected. The order in which different options get evaluated is not
-                predictable, as a result nodes may be added in
-                inconsistent order. In most JavaScript engine, options will be evaluated
-                in the order that they were defined, however no JavaScript engine
-                actually guarantees that.`
+                html: `Note: <b>child</b>, ${Macro.CHILDREN}, ${Macro.NODES}, ${Macro.NODE_},
+                ${Macro.TEXT} and ${Macro.HTML} options are designed to be used separately
+                because they all provide different ways of creating nested content. Using
+                a combination of the above options may produce unexpected results. The
+                order in which options get evaluated is not predictable, as a
+                result nodes may be added in inconsistent order or overwritten. In most JavaScript
+                engines, options will be evaluated in the order that they were defined,
+                however no JavaScript engine actually guarantees that.`
             },
             {
                 tag: 'p',
