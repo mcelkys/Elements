@@ -40,7 +40,8 @@
         LI: '<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ul"><dfn>&#60;li&#62;</dfn></a>',
         INPUT: '<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input"><dfn>&#60;input&#62;</dfn></a>',
         FORIN: '<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in"><dfn>for...in</dfn></a>',
-        MAP: '<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map"><dfn>Map</dfn></a>'
+        MAP: '<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map"><dfn>Map</dfn></a>',
+        EVENT_PREVENT_DEFAULT: '<a href="https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault"><dfn>Event.preventDefault()</dfn></a>'
     });
 
     Articles.declare([
@@ -97,16 +98,20 @@
                             src: './js/articles/Id.js'
                         },
                         {
-                            title: 'listeners'
+                            title: 'listeners',
+                            src: './js/articles/Listeners.js'
                         },
                         {
-                            title: 'node'
+                            title: 'node',
+                            src: './js/articles/Node.js'
                         },
                         {
-                            title: 'nodes'
+                            title: 'nodes',
+                            src: './js/articles/Nodes.js'
                         },
                         {
-                            title: 'on'
+                            title: 'on',
+                            src: './js/articles/On.js'
                         },
                         {
                             title: 'prependTo'

@@ -1,12 +1,12 @@
-Articles.define('children', Macro => [
+Articles.define('nodes', Macro => [
     {
         tag: 'p',
-        html: `Creates child ${Macro.HTML_ELEMENT} instances and appends them to
-        the resulting ${Macro.HTML_ELEMENT} in the order they are defined. The
-        <b>children</b> option is designed for cases, where mutliple children
-        need to be created from options ${Macro.OBJECT} instances. In case you
-        only require to have a single child, it is better to use the ${Macro.CHILD}
-        option.`
+        html: `Appends child ${Macro.NODE} instances in the order they were
+        defined. This option is designed for cases, where mutliple ${Macro.NODE}
+        isntances (ones that are ready to be appended and do not need to be built
+        from <b>options</b> ${Macro.OBJECT} instances) need to be added as the
+        content of the resulting ${Macro.HTML_ELEMENT}. In case you only require
+        to have a single child, it is better to use the ${Macro.NODE_} option.`
     },
     {
         tag: 'section',
@@ -14,7 +14,7 @@ Articles.define('children', Macro => [
         children: [
             {
                 tag: 'p',
-                html: `Note: ${Macro.CHILD}, <b>children</b>, ${Macro.NODES}, ${Macro.NODE_},
+                html: `Note: ${Macro.CHILD}, ${Macro.CHILDREN}, <b>nodes</b>, ${Macro.NODE_},
                 ${Macro.TEXT} and ${Macro.HTML} options are designed to be used separately
                 because they all provide different ways of creating nested content. Using
                 a combination of the above options may produce unexpected results. The
@@ -38,8 +38,8 @@ Articles.define('children', Macro => [
             { tag: 'h3', text: 'Value' },
             {
                 tag: 'p',
-                html: `An ${Macro.ARRAY} of valid <b>options</b> ${Macro.OBJECT} instances
-                that could be used with ${Macro.FRAGMENTS_CREATE} function on its own.`
+                html: `An ${Macro.ARRAY} of ${Macro.NODE} instances that will
+                be appended to the resulting ${Macro.HTML_ELEMENT}.`
             }
         ]
     },
@@ -49,9 +49,9 @@ Articles.define('children', Macro => [
             { tag: 'h3', text: 'Example' },
             {
                 tag: 'p',
-                html: `The following example creates a ${Macro.UL} list with three
-                nested child ${Macro.LI} instances by mapping out an ${Macro.ARRAY} of
-                color values to an array of <b>options</b> objects.`
+                html: `The following example creates an ${Macro.ARRAY} of ${Macro.LI}
+                instances by mapping over and array of color values. It then creates
+                a ${Macro.UL} list with the array of ${Macro.LI} nodes as its content.`
             },
             {
                 class: 'responsive',
@@ -64,12 +64,15 @@ Articles.define('children', Macro => [
                                 tag: 'code',
                                 text:
 `const colors = ['Red', 'Green', 'Blue'];
-Elements.create({
-    tag: 'ul',
-    children: colors.map(color => ({
+const listItems = colors.map(color => {
+    return Elements.create({
         tag: 'li',
         text: color
-    }))
+    });
+});
+Elements.create({
+    tag: 'ul',
+    nodes: listItems
 });`
                             }
                         ]
