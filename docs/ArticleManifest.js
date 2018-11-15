@@ -114,10 +114,12 @@
                             src: './js/articles/On.js'
                         },
                         {
-                            title: 'prependTo'
+                            title: 'prependTo',
+                            src: './js/articles/PrependTo.js'
                         },
                         {
-                            title: 'replaceNode'
+                            title: 'replaceNode',
+                            src: './js/articles/ReplaceNode.js'
                         },
                         {
                             title: 'set'
