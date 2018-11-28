@@ -140,7 +140,7 @@
             if (prop in processorFunctions)
                 processorFunctions[prop](element, config[prop]);
             else {
-                var descriptor = Object.getOwnPropertyDescriptor(element.constructor.prototype, prop);
+                var descriptor = Object.getOwnPropertyDescriptor(Object.getPrototypeOf(element), prop);
                 if (descriptor && typeof descriptor.set === FUNCTION)
                     descriptor.set.call(element, config[prop]);
                 else if (prop !== TAG)
@@ -202,4 +202,4 @@
         from: fragmentFrom
     });
 
-})(window, document);
+})(this, document);
