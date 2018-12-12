@@ -182,6 +182,19 @@
         return fragment;
     }
 
+    function mergeFragments(fragments) {
+        var merged = document.createDocumentFragment();
+        var fragment, nodes, i, len;
+        for (i = 0, len = fragments.length; i < len; i++) {
+            fragment = fragments[i];
+            nodes = fragment.childNodes;
+            while (fragment.hasChildNodes()) {
+                merged.appendChild(nodes[0]);
+            }
+        }
+        return merged;
+    }
+
     function declareInterface(name, publics) {
         Object.defineProperty(globalScope, name, {
             writable: false,
@@ -199,7 +212,8 @@
 
     declareInterface('Fragments', {
         create: createFragment,
-        from: fragmentFrom
+        from: fragmentFrom,
+        merge: mergeFragments
     });
 
 })(this, document);

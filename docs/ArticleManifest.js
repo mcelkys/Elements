@@ -147,6 +147,9 @@
                 {
                     title: 'Fragments.from()',
                     src: './js/articles/FragmentsFrom.js'
+                },
+                {
+                    title: 'Fragments.merge()'
                 }
             ]
         },
